@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Interfaces;
+using Interfaces.DTO.ProductDTO;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce_API.Controllers
 {
@@ -6,17 +8,21 @@ namespace ECommerce_API.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
+        private readonly IProductService _productService;
         private readonly ILogger<ProductController> _logger;
 
-        public ProductController(ILogger<ProductController> logger)
+        public ProductController(IProductService productService, ILogger<ProductController> logger)
         {
+            _productService = productService;
             _logger = logger;
         }
 
         [HttpPost("/create")]
-        public async Task<IActionResult> CreateProduct()
+        public async Task<IActionResult> CreateProduct([FromBody] ProductAddDTO productAddDTO)
         {
-            throw new NotImplementedException();
+            await _productService.AddProduct(productAddDTO);
+
+            return Ok(productAddDTO);
         }
 
         [HttpGet("/products")]

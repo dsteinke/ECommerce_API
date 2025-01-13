@@ -1,8 +1,8 @@
 ﻿namespace Interfaces.DTO.ProductDTO
 {
-    public class ProductRequestDTO
+    public class ProductDTO
     {
-        public int? ProductId { get; set; }
+        public Guid? ProductId { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
         public decimal? Price { get; set; }
