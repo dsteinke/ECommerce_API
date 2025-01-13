@@ -37,14 +37,27 @@ namespace Services
             throw new NotImplementedException();
         }
 
-        public Task<ProductDTO> GetAllProducts()
+        public async Task<List<ProductDTO>> GetAllProducts()
         {
-            throw new NotImplementedException();
+            var products = await _productRepository.GetAllProducts();
+
+            var response = new List<ProductDTO>();
+
+            foreach(var product in products)
+            {
+                response.Add(_mapper.Map<ProductDTO>(product));
+            }
+
+            return response;
         }
 
-        public Task<ProductDTO> GetProductById(Guid productId)
+        public async Task<ProductDTO> GetProductById(Guid productId)
         {
-            throw new NotImplementedException();
+            var product = await _productRepository.GetProductById(productId);
+
+            var response = _mapper.Map<ProductDTO>(product);
+
+            return response;
         }
 
         public Task<List<ProductDTO>> SearchProducts()

@@ -17,7 +17,7 @@ namespace ECommerce_API.Controllers
             _logger = logger;
         }
 
-        [HttpPost("/create")]
+        [HttpPost("create")]
         public async Task<IActionResult> CreateProduct([FromBody] ProductAddDTO productAddDTO)
         {
             await _productService.AddProduct(productAddDTO);
@@ -25,16 +25,20 @@ namespace ECommerce_API.Controllers
             return Ok(productAddDTO);
         }
 
-        [HttpGet("/products")]
+        [HttpGet("products")]
         public async Task<IActionResult> GetAllProducts()
         {
-            throw new NotImplementedException();
+            var result = await _productService.GetAllProducts();
+
+            return Ok(result);
         }
 
         [HttpGet("{productId}")]
         public async Task<IActionResult> GetProductById(Guid productId)
         {
-            throw new NotImplementedException();
+            var result = await _productService.GetProductById(productId);
+
+            return Ok(result);
         }
 
         [HttpGet("search")]

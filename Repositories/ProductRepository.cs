@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.EntityFrameworkCore;
 using RepositoryInterfaces;
 
 namespace Repositories
@@ -20,14 +21,14 @@ namespace Repositories
             return product;
         }
 
-        public Task<List<Product>> GetAllProducts()
+        public async Task<List<Product>> GetAllProducts()
         {
-            throw new NotImplementedException();
+            return await _context.Products.ToListAsync();
         }
 
-        public Task<Product?> GetProductById(Guid productId)
+        public async Task<Product?> GetProductById(Guid productId)
         {
-            throw new NotImplementedException();
+            return await _context.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
         }
 
         public Task<Product> UpdateProduct(Product product)
