@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Interfaces.DTO.ProductDTO;
 using Microsoft.EntityFrameworkCore;
 using RepositoryInterfaces;
 
@@ -31,14 +32,62 @@ namespace Repositories
             return await _context.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
         }
 
-        public Task<Product> UpdateProduct(Product product)
+        public async Task<List<Product>> SearchProduct(ProductDTO productDTO)
         {
-            throw new NotImplementedException();
+            var query = _context.Products.AsQueryable();
+
+            if (productDTO.ProductId != Guid.Empty)
+            {
+                query = query.Where(x => x.ProductId == productDTO.ProductId);
+            }
+            if (!string.IsNullOrWhiteSpace(productDTO.Name))
+            {
+                query = query.Where(x => x.Name.Contains(productDTO.Name));
+            }
+            if (!string.IsNullOrWhiteSpace(productDTO.Description))
+            {
+                query = query.Where(x => x.Description.Contains(productDTO.Description));
+            }
+            if (productDTO.Price > 0)
+            {
+                query = query.Where(x => x.Price == productDTO.Price);
+            }
+            if (!string.IsNullOrWhiteSpace(productDTO.Category))
+            {
+                query = query.Where(x => x.Category.Contains(productDTO.Category));
+            }
+
+            return await query.ToListAsync();
         }
 
-        public Task<bool> DeleteProduct(Guid productId)
+        public async Task<Product> UpdateProduct(Product product)
         {
-            throw new NotImplementedException();
+            var productToUpdate = await _context.Products
+                .FirstOrDefaultAsync(x => x.ProductId == product.ProductId);
+
+            if (productToUpdate == null)
+                return product;
+
+            productToUpdate.Name = product.Name;
+            productToUpdate.Description = product.Description;
+            productToUpdate.Price = product.Price;
+            productToUpdate.Category = product.Category;
+
+            await _context.SaveChangesAsync();
+
+            return productToUpdate;
+        }
+
+        public async Task<bool> DeleteProduct(Guid productId)
+        {
+            var productToDelete =
+                await _context.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
+
+            _context.Products.Remove(productToDelete);
+
+            await _context.SaveChangesAsync();
+
+            return true;
         }
     }
 }

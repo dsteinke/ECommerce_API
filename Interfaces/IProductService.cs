@@ -7,7 +7,7 @@ namespace Interfaces
         Task<ProductDTO> AddProduct(ProductAddDTO? productAddDTO);
         Task<List<ProductDTO>> GetAllProducts();
         Task<ProductDTO> GetProductById(Guid productId);
-        Task<List<ProductDTO>> SearchProducts();
+        Task<List<ProductDTO>> SearchProducts(ProductDTO productDTO);
         Task<ProductDTO>UpdateProduct(ProductUpdateDTO? productUpdateDTO);
         Task<bool>DeleteProduct(Guid productId);
     }

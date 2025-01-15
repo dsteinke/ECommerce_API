@@ -42,21 +42,27 @@ namespace ECommerce_API.Controllers
         }
 
         [HttpGet("search")]
-        public async Task<IActionResult> SearchProduct()
+        public async Task<IActionResult> SearchProduct([FromQuery] ProductDTO productDTO)
         {
-            throw new NotImplementedException();
+            var result = await _productService.SearchProducts(productDTO);
+
+            return Ok(result);
         }
 
         [HttpPut("edit")]
-        public async Task<IActionResult> UpdateProduct(Guid productId)
+        public async Task<IActionResult> UpdateProduct([FromBody] ProductUpdateDTO productUpdateDTO)
         {
-            throw new NotImplementedException();
+            await _productService.UpdateProduct(productUpdateDTO);
+
+            return Ok();
         }
 
         [HttpDelete("delete/{productId}")]
         public async Task<IActionResult> DeleteProduct(Guid productId)
         {
-            throw new NotImplementedException();
+            await _productService.DeleteProduct(productId);
+
+            return Ok();
         }
 
     }
