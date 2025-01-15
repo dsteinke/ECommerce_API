@@ -36,7 +36,7 @@ namespace Repositories
         {
             var query = _context.Products.AsQueryable();
 
-            if (productDTO.ProductId != Guid.Empty)
+            if (productDTO.ProductId != null)
             {
                 query = query.Where(x => x.ProductId == productDTO.ProductId);
             }
