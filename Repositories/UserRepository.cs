@@ -1,5 +1,5 @@
 ﻿using Entities;
-using Interfaces.DTO.User;
+using Microsoft.EntityFrameworkCore;
 using RepositoryInterfaces;
 
 namespace Repositories
@@ -19,6 +19,18 @@ namespace Repositories
 
             await _context.SaveChangesAsync();
         }
+
+        public async Task<bool> UserExists(string username, string email)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Username == username || x.Email == email);
+
+            if (user == null)
+                return false;
+
+            return true;
+        }
+
+
 
     }
 }

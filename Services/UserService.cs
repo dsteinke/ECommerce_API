@@ -9,21 +9,20 @@ namespace Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-        private readonly ICartRepository _cartRepository;
         private readonly IPasswordHasher<User> _passwordHasher;
 
         public UserService
-            (IUserRepository userRepository, ICartRepository cartRepository, IPasswordHasher<User> passwordHasher)
+            (IUserRepository userRepository, IPasswordHasher<User> passwordHasher)
         {
             _userRepository = userRepository;
-            _cartRepository = cartRepository;
             _passwordHasher = passwordHasher;
         }
 
         public async Task RegisterUser(UserAddDTO userAddDTO)
         {
             //Check if user already exists
-            //
+            if (await _userRepository.UserExists(userAddDTO.Username, userAddDTO.Email) == false)
+                throw new InvalidOperationException("User with the same username or email already exists");
 
             var user = userAddDTO.ToUser();
 
