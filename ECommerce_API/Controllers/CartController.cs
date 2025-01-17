@@ -8,24 +8,34 @@ namespace ECommerce_API.Controllers
     {
 
 
-        public CartController()
-        {
+        //public CartController()
+        //{
             
-        }
+        //}
 
-        public async Task<IActionResult> GetCart()
-        {
-            throw new NotImplementedException();
-        }
+        //public async Task<IActionResult> GetCart()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public async Task<IActionResult> AddToCart()
-        {
-            throw new NotImplementedException();
-        }
+        //public async Task<IActionResult> AddCartItemToCart()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public async Task<IActionResult> RemoveFromCart()
-        {
-            throw new NotImplementedException();
-        }
+        //public async Task<IActionResult> ChangeQuantityOfItem()
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public async Task<IActionResult> RemoveCartItemFromCart()
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public async Task<IActionResult> GetCartTotalPrice()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

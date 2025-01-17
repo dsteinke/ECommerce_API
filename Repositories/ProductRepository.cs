@@ -83,7 +83,7 @@ namespace Repositories
             var productToDelete =
                 await _context.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
 
-            _context.Products.Remove(productToDelete);
+            _context.Products.Remove(productToDelete!);
 
             await _context.SaveChangesAsync();
 

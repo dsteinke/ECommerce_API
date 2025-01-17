@@ -6,6 +6,8 @@
         public Guid UserId { get; set; }
 
 
-        public List<CartItem>? CartItems { get; set; }
+        //Navigation Properties
+        public User User { get; set; }
+        public ICollection<CartItem>? CartItems { get; set; }
     }
 }
