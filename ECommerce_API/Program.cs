@@ -16,6 +16,7 @@ builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddTransient<ICartRepository, CartRepository>();
+builder.Services.AddTransient<ICartService, CartService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

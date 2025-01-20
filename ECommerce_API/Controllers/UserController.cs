@@ -22,5 +22,13 @@ namespace ECommerce_API.Controllers
 
             return Ok();
         }
+
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetUserByUserId([FromRoute] Guid userId)
+        {
+            var user = await _userService.GetUserById(userId);
+
+            return Ok(user);
+        }
     }
 }

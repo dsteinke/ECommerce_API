@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using AutoMapper;
+using Entities;
 using Interfaces;
 using Interfaces.DTO.User;
 using Microsoft.AspNetCore.Identity;
@@ -10,12 +11,15 @@ namespace Services
     {
         private readonly IUserRepository _userRepository;
         private readonly IPasswordHasher<User> _passwordHasher;
+        private readonly IMapper _mapper;
+
 
         public UserService
-            (IUserRepository userRepository, IPasswordHasher<User> passwordHasher)
+            (IUserRepository userRepository, IPasswordHasher<User> passwordHasher, IMapper mapper)
         {
             _userRepository = userRepository;
             _passwordHasher = passwordHasher;
+            _mapper = mapper;
         }
 
         public async Task RegisterUser(UserAddDTO userAddDTO)
@@ -51,6 +55,18 @@ namespace Services
             var result = _passwordHasher.VerifyHashedPassword(user, hashedPassword, providedPassword);
 
             return result == PasswordVerificationResult.Success;
+        }
+
+        public async Task<UserResponseDTO> GetUserById(Guid userId)
+        {
+            var user = await _userRepository.GetUserById(userId);
+
+            if (user == null)
+                throw new KeyNotFoundException($"No user found with userId: {userId}");
+
+            var result = _mapper.Map<UserResponseDTO>(user);
+
+            return result;
         }
     }
 }

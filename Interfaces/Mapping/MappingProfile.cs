@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Entities;
 using Interfaces.DTO.ProductDTO;
+using Interfaces.DTO.User;
 
 namespace Interfaces.Mapping
 {
@@ -8,7 +9,8 @@ namespace Interfaces.Mapping
     {
         public MappingProfile()
         {
-            CreateMap<Product, ProductDTO>();
+            CreateMap<Product, ProductResponseDTO>();
+            CreateMap<User, UserResponseDTO>();
         }
     }
 }

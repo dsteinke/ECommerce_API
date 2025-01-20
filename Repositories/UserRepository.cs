@@ -13,6 +13,13 @@ namespace Repositories
             _context = context;
         }
 
+        public async Task<User?> GetUserById(Guid userId)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.UserId == userId);
+
+            return user;
+        }
+
         public async Task RegisterUser(User user)
         {
             _context.Users.Add(user);
