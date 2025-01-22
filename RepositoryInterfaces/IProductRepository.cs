@@ -10,7 +10,7 @@ namespace RepositoryInterfaces
         Task<Product> UpdateProduct(Product product);
         Task<List<Product>> GetAllProducts();
         Task<Product?>GetProductById(Guid productId);
-        Task<List<Product>> SearchProduct(ProductDTO productDTO);
+        Task<List<Product>> SearchProduct(ProductResponseDTO productDTO);
         Task<bool>DeleteProduct(Guid productId);
 
     }

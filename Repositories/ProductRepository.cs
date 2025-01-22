@@ -32,7 +32,7 @@ namespace Repositories
             return await _context.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
         }
 
-        public async Task<List<Product>> SearchProduct(ProductDTO productDTO)
+        public async Task<List<Product>> SearchProduct(ProductResponseDTO productDTO)
         {
             var query = _context.Products.AsQueryable();
 

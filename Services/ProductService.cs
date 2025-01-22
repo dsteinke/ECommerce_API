@@ -16,7 +16,7 @@ namespace Services
             _mapper = mapper;
         }
 
-        public async Task<ProductDTO> AddProduct(ProductAddDTO? productAddDTO)
+        public async Task<ProductResponseDTO> AddProduct(ProductAddDTO? productAddDTO)
         {
             if (productAddDTO == null)
                 throw new ArgumentNullException(nameof(productAddDTO));
@@ -27,7 +27,7 @@ namespace Services
 
             await _productRepository.AddProduct(product);
 
-            var response = _mapper.Map<ProductDTO>(product);
+            var response = _mapper.Map<ProductResponseDTO>(product);
 
             return response;
         }
@@ -44,43 +44,43 @@ namespace Services
             return true;
         }
 
-        public async Task<List<ProductDTO>> GetAllProducts()
+        public async Task<List<ProductResponseDTO>> GetAllProducts()
         {
             var products = await _productRepository.GetAllProducts();
 
-            var response = new List<ProductDTO>();
+            var response = new List<ProductResponseDTO>();
 
             foreach (var product in products)
             {
-                response.Add(_mapper.Map<ProductDTO>(product));
+                response.Add(_mapper.Map<ProductResponseDTO>(product));
             }
 
             return response;
         }
 
-        public async Task<ProductDTO> GetProductById(Guid productId)
+        public async Task<ProductResponseDTO> GetProductById(Guid productId)
         {
             var product = await _productRepository.GetProductById(productId);
 
             if (product == null)
                 throw new ArgumentNullException($"ProductId: '{productId}' does not exist");
 
-            var response = _mapper.Map<ProductDTO>(product);
+            var response = _mapper.Map<ProductResponseDTO>(product);
 
             return response;
         }
 
-        public async Task<List<ProductDTO>> SearchProducts(ProductDTO productDTO)
+        public async Task<List<ProductResponseDTO>> SearchProducts(ProductResponseDTO productDTO)
         {
             var searchedProducts = await _productRepository.SearchProduct(productDTO);
 
             if (!searchedProducts.Any())
-                return new List<ProductDTO>();
+                return new List<ProductResponseDTO>();
 
-            return _mapper.Map<List<ProductDTO>>(searchedProducts);
+            return _mapper.Map<List<ProductResponseDTO>>(searchedProducts);
         }
 
-        public async Task<ProductDTO> UpdateProduct(ProductUpdateDTO? productUpdateDTO)
+        public async Task<ProductResponseDTO> UpdateProduct(ProductUpdateDTO? productUpdateDTO)
         {
             var productToUpdate = await _productRepository.GetProductById(productUpdateDTO.ProductId);
 
@@ -95,7 +95,7 @@ namespace Services
 
             await _productRepository.UpdateProduct(productToUpdate);
 
-            var response = _mapper.Map<ProductDTO>(productToUpdate);
+            var response = _mapper.Map<ProductResponseDTO>(productToUpdate);
 
             return response;
         }

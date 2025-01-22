@@ -8,6 +8,6 @@
 
         //Navigation Properties
         public User User { get; set; }
-        public ICollection<CartItem>? CartItems { get; set; }
+        public List<CartItem>? CartItems { get; set; }
     }
 }

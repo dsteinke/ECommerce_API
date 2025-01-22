@@ -4,11 +4,11 @@ namespace Interfaces
 {
     public interface IProductService
     {
-        Task<ProductDTO> AddProduct(ProductAddDTO? productAddDTO);
-        Task<List<ProductDTO>> GetAllProducts();
-        Task<ProductDTO> GetProductById(Guid productId);
-        Task<List<ProductDTO>> SearchProducts(ProductDTO productDTO);
-        Task<ProductDTO>UpdateProduct(ProductUpdateDTO? productUpdateDTO);
+        Task<ProductResponseDTO> AddProduct(ProductAddDTO? productAddDTO);
+        Task<List<ProductResponseDTO>> GetAllProducts();
+        Task<ProductResponseDTO> GetProductById(Guid productId);
+        Task<List<ProductResponseDTO>> SearchProducts(ProductResponseDTO productDTO);
+        Task<ProductResponseDTO>UpdateProduct(ProductUpdateDTO? productUpdateDTO);
         Task<bool>DeleteProduct(Guid productId);
     }
 }
