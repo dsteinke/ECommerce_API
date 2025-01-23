@@ -42,7 +42,7 @@ namespace ECommerce_API.Controllers
         }
 
         [HttpGet("search")]
-        public async Task<IActionResult> SearchProduct([FromQuery] ProductResponseDTO productDTO)
+        public async Task<IActionResult> SearchProduct([FromQuery] ProductRequestDTO productDTO)
         {
             var result = await _productService.SearchProducts(productDTO);
 

@@ -65,26 +65,24 @@ namespace Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> UpdateCartItemQuantity(Guid userId, Guid productId, int quantity)
+        public async Task UpdateCartItemQuantity(Guid userId, Guid productId, int quantity)
         {
             var cart = await _context.Carts
                 .Include(x => x.CartItems)
                 .FirstOrDefaultAsync(x => x.UserId == userId);
 
             if (cart == null)
-                return false;
+                throw new KeyNotFoundException($"No user found with Id: {userId}");
 
             var itemToUpdate = cart.CartItems
                 .FirstOrDefault(x => x.ProductId == productId);
 
             if (itemToUpdate == null)
-                return false;
+                throw new KeyNotFoundException($"No product with Id: {productId} found in the cart for user with Id: {userId}.");
 
             itemToUpdate.Quantity = quantity;
 
             await _context.SaveChangesAsync();
-
-            return true;
         }
     }
 }

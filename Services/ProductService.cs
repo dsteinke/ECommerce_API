@@ -37,7 +37,7 @@ namespace Services
             var personToDelete = await _productRepository.GetProductById(productId);
 
             if (personToDelete == null)
-                return false;
+                throw new KeyNotFoundException($"Product with Id: {productId} does not exist");
 
             await _productRepository.DeleteProduct(productId);
 
@@ -63,14 +63,14 @@ namespace Services
             var product = await _productRepository.GetProductById(productId);
 
             if (product == null)
-                throw new ArgumentNullException($"ProductId: '{productId}' does not exist");
+                throw new KeyNotFoundException($"ProductId: '{productId}' does not exist");
 
             var response = _mapper.Map<ProductResponseDTO>(product);
 
             return response;
         }
 
-        public async Task<List<ProductResponseDTO>> SearchProducts(ProductResponseDTO productDTO)
+        public async Task<List<ProductResponseDTO>> SearchProducts(ProductRequestDTO productDTO)
         {
             var searchedProducts = await _productRepository.SearchProduct(productDTO);
 

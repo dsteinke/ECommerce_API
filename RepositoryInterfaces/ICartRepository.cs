@@ -6,7 +6,7 @@ namespace RepositoryInterfaces
     {
         Task AddItemToCart(Guid userId, Guid productId, int quantity);
         Task RemoveItemFromCart(Guid userId, Guid productId);
-        Task<bool> UpdateCartItemQuantity(Guid userId, Guid productId, int quantity);
+        Task UpdateCartItemQuantity(Guid userId, Guid productId, int quantity);
         Task<Cart> GetCartByUserId(Guid userId);
     }
 }

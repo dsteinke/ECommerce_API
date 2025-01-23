@@ -32,10 +32,14 @@ namespace ECommerce_API.Controllers
             return Ok();
         }
 
-        //public async Task<IActionResult> ChangeQuantityOfItem()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        [HttpPut("change-quantity")]
+        public async Task<IActionResult> ChangeQuantityOfItem
+            ([FromQuery] Guid userId, [FromQuery] Guid productId, [FromQuery] int quantity)
+        {
+            await _cartService.UpdateCartItemQuantity(userId, productId, quantity);
+
+            return Ok();
+        }
 
         [HttpDelete("remove-item")]
         public async Task<IActionResult> RemoveItemFromCart
@@ -46,9 +50,6 @@ namespace ECommerce_API.Controllers
             return Ok();
         }
 
-        //public async Task<IActionResult> GetCartTotalPrice()
-        //{
-        //    throw new NotImplementedException();
-        //}
+
     }
 }

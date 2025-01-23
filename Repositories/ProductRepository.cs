@@ -32,7 +32,7 @@ namespace Repositories
             return await _context.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
         }
 
-        public async Task<List<Product>> SearchProduct(ProductResponseDTO productDTO)
+        public async Task<List<Product>> SearchProduct(ProductRequestDTO productDTO)
         {
             var query = _context.Products.AsQueryable();
 
@@ -83,7 +83,7 @@ namespace Repositories
             var productToDelete =
                 await _context.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
 
-            _context.Products.Remove(productToDelete!);
+            _context.Products.Remove(productToDelete);
 
             await _context.SaveChangesAsync();
 

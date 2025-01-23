@@ -29,14 +29,10 @@ namespace Repositories
 
         public async Task<bool> UserExists(string username, string email)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Username == username || x.Email == email);
+            var userExists = await _context.Users.AnyAsync(x => x.Username == username || x.Email == email);
 
-            if (user == null)
-                return false;
-
-            return true;
+            return userExists;
         }
-
 
 
     }
