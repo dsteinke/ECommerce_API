@@ -1,13 +1,15 @@
 ﻿using Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace Interfaces.DTO.ProductDTO
 {
     public class ProductUpdateDTO
     {
+        [Required]
         public Guid ProductId { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
-        public decimal Price { get; set; } //check field again if nullable or not
+        public decimal Price { get; set; }
         public string? Category { get; set; }
 
         public Product ToProduct()

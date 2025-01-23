@@ -1,10 +1,15 @@
-﻿namespace Interfaces.DTO.User
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Interfaces.DTO.User
 {
     public class UserAddDTO
     {
-        public string Username { get; set; }
-        public string Email { get; set; }
-        public string PasswordHash { get; set; }
+        [Required]
+        public string Username { get; set; } = null!;
+        [Required]
+        public string Email { get; set; } = null!;
+        [Required]
+        public string PasswordHash { get; set; } = null!;
 
         public Entities.User ToUser()
         {
