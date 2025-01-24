@@ -19,7 +19,6 @@ namespace Interfaces.DTO.User
                 Username = Username,
                 Email = Email,
                 PasswordHash = PasswordHash,
-                Role = "Customer"
             };
         }
     }
