@@ -1,5 +1,4 @@
-﻿using Interfaces;
-using Interfaces.DTO.ProductDTO;
+﻿using ECommerce_API.Application;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce_API.Controllers

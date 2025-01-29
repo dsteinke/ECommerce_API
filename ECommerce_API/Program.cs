@@ -1,12 +1,9 @@
-using Entities;
-using Interfaces;
-using Interfaces.Mapping;
+using ECommerce_API.Application;
+using ECommerce_API.Core;
+using ECommerce_API.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Repositories;
-using RepositoryInterfaces;
 using Serilog;
-using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
