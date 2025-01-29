@@ -20,6 +20,13 @@ namespace Repositories
             return user;
         }
 
+        public async Task<User?> GetUserByUsernameOrEmail(string usernameOrPassword)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Username == usernameOrPassword);
+
+            return user;
+        }
+
         public async Task RegisterUser(User user)
         {
             _context.Users.Add(user);

@@ -9,10 +9,12 @@ namespace ECommerce_API.Controllers
     public class CartController : ControllerBase
     {
         private readonly ICartService _cartService;
+        private readonly ILogger<CartController> _logger;
 
-        public CartController(ICartService cartService)
+        public CartController(ICartService cartService, ILogger<CartController> logger)
         {
             _cartService = cartService;
+            _logger = logger;
         }
 
         [HttpGet("{userId}")]

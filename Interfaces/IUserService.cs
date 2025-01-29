@@ -1,4 +1,5 @@
-﻿using Interfaces.DTO.User;
+﻿using Interfaces.DTO.Auth;
+using Interfaces.DTO.User;
 
 namespace Interfaces
 {

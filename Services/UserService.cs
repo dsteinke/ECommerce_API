@@ -2,7 +2,6 @@
 using Entities;
 using Interfaces;
 using Interfaces.DTO.User;
-using Microsoft.AspNetCore.Identity;
 using RepositoryInterfaces;
 
 namespace Services
@@ -10,15 +9,14 @@ namespace Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-        private readonly IPasswordHasher<User> _passwordHasher;
+        private readonly IAuthService _authService;
         private readonly IMapper _mapper;
 
-
         public UserService
-            (IUserRepository userRepository, IPasswordHasher<User> passwordHasher, IMapper mapper)
+            (IUserRepository userRepository, IAuthService authService, IMapper mapper)
         {
             _userRepository = userRepository;
-            _passwordHasher = passwordHasher;
+            _authService = authService;
             _mapper = mapper;
         }
 
@@ -39,22 +37,10 @@ namespace Services
                 CartItems = new List<CartItem>()
             };
 
-            user.PasswordHash = HashPassword(user, userAddDTO.PasswordHash);
+            user.PasswordHash = _authService.HashPassword(user, userAddDTO.PasswordHash);
             user.Cart = cart;
 
             await _userRepository.RegisterUser(user);
-        }
-
-        public string HashPassword(User user, string password)
-        {
-            return _passwordHasher.HashPassword(user, password);
-        }
-
-        public bool VerifyPassword(User user, string hashedPassword, string providedPassword)
-        {
-            var result = _passwordHasher.VerifyHashedPassword(user, hashedPassword, providedPassword);
-
-            return result == PasswordVerificationResult.Success;
         }
 
         public async Task<UserResponseDTO> GetUserById(Guid userId)
