@@ -1,4 +1,6 @@
-﻿using ECommerce_API.Application.DTO.Identity;
+﻿using ECommerce_API.Application;
+using ECommerce_API.Application.DTO.Identity;
+using ECommerce_API.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,9 +11,11 @@ namespace ECommerce_API.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
+        private readonly IAccountService _accountService;
 
-        public AccountController()
+        public AccountController(IAccountService accountService)
         {
+            _accountService = accountService;
         }
 
         [HttpPost]
@@ -23,11 +27,40 @@ namespace ECommerce_API.Controllers
                     .SelectMany(x => x.Errors)
                     .Select(e => e.ErrorMessage));
 
-                return Problem(errorMessage);
+                return BadRequest(errorMessage);
+            }
+            var result = await _accountService.RegisterUser(registerDTO);
+
+            if (!result.Succeeded)
+            {
+                var errorMessages = string.Join(" , ", result.Errors.Select(e => e.Description));
+                return BadRequest(errorMessages);
             }
 
+            return Ok("User successfully created.");
         }
 
+        [HttpPost]
+        public async Task<IActionResult> LoginUser(LoginDTO loginDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                var errorMessage = string.Join(" , ", ModelState.Values
+                    .SelectMany(x => x.Errors)
+                    .Select(e => e.ErrorMessage));
+
+                return BadRequest(errorMessage);
+            }
+
+            var user = await _accountService.LoginUser(loginDTO);
+
+            if (user == null)
+            {
+                return Unauthorized("Invalid login attempt.");
+            }
+
+            return Ok("Successfully logged in.");
+        }
 
     }
 }
