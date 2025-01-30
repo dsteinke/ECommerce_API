@@ -1,4 +1,6 @@
-﻿namespace ECommerce_API.Core
+﻿using ECommerce_API.Core.Identity;
+
+namespace ECommerce_API.Core
 {
     public class Cart
     {
@@ -7,7 +9,7 @@
 
 
         //Navigation Properties
-        public User User { get; set; }
+        public ApplicationUser User { get; set; }
         public List<CartItem>? CartItems { get; set; }
     }
 }

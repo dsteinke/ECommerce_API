@@ -50,7 +50,5 @@ namespace ECommerce_API.Controllers
 
             return Ok();
         }
-
-
     }
 }

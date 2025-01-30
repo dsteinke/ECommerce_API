@@ -1,31 +1,29 @@
 using ECommerce_API.Application;
-using ECommerce_API.Core;
 using ECommerce_API.Infrastructure;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<ECommerceDbContext>(options =>
+{
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
 // Add services to the container.
-builder.Services.AddTransient<IPasswordHasher<User>, PasswordHasher<User>>();
-builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUserService, UserService>();
-builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddTransient<ICartRepository, CartRepository>();
 builder.Services.AddTransient<ICartService, CartService>();
 
+//Identity
+builder.Services.AddIdentityInfrastructure();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
-
-builder.Services.AddDbContext<ECommerceDbContext>(options =>
-{
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
 
 builder.Host.UseSerilog((HostBuilderContext context, IServiceProvider services,
     LoggerConfiguration loggerConfiguration) =>
@@ -36,6 +34,8 @@ builder.Host.UseSerilog((HostBuilderContext context, IServiceProvider services,
 });
 
 var app = builder.Build();
+
+await app.Services.InitializeRolesAsync();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

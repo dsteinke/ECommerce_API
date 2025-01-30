@@ -8,7 +8,6 @@ namespace ECommerce_API.Application
         public MappingProfile()
         {
             CreateMap<Product, ProductResponseDTO>();
-            CreateMap<User, UserResponseDTO>();
             CreateMap<Cart, CartResponseDTO>();
             CreateMap<CartItem, CartItemResponseDTO>()
                 .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.Name))
