@@ -8,5 +8,6 @@ namespace ECommerce_API.Application.Interfaces
     {
         Task<IdentityResult> RegisterUser(RegisterDTO registerDTO);
         Task<ApplicationUser> LoginUser(LoginDTO loginDTO);
+        Task LogoutUser();
     }
 }

@@ -26,12 +26,17 @@ namespace ECommerce_API.Application.Services
 
             if (result.Succeeded)
             {
-                var user = await _userManager.FindByEmailAsync (loginDTO.Email);
+                var user = await _userManager.FindByEmailAsync(loginDTO.Email);
 
                 return user;
 
             }
             return null;
+        }
+
+        public async Task LogoutUser()
+        {
+            await _signInManager.SignOutAsync();
         }
 
         public async Task<IdentityResult> RegisterUser(RegisterDTO registerDTO)
@@ -44,11 +49,11 @@ namespace ECommerce_API.Application.Services
 
             var result = await _userManager.CreateAsync(user, registerDTO.Password);
 
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, "Customer");
 
-                await _signInManager.SignInAsync(user, isPersistent : false);
+                await _signInManager.SignInAsync(user, isPersistent: false);
             }
 
             return result;

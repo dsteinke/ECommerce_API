@@ -56,10 +56,18 @@ namespace ECommerce_API.Controllers
 
             if (user == null)
             {
-                return Unauthorized("Invalid login attempt.");
+                return Unauthorized("Invalid email or password.");
             }
 
             return Ok("Successfully logged in.");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> LogoutUser()
+        {
+            await _accountService.LogoutUser();
+
+            return Ok();
         }
 
     }
