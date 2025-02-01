@@ -18,7 +18,7 @@ namespace ECommerce_API.Controllers
             _accountService = accountService;
         }
 
-        [HttpPost]
+        [HttpPost("register")]
         public async Task<IActionResult> RegisterUser([FromBody] RegisterDTO registerDTO)
         {
             if (!ModelState.IsValid)
@@ -31,17 +31,16 @@ namespace ECommerce_API.Controllers
             }
             var result = await _accountService.RegisterUser(registerDTO);
 
-            if (!result.Succeeded)
+            if (result == null)
             {
-                var errorMessages = string.Join(" , ", result.Errors.Select(e => e.Description));
-                return BadRequest(errorMessages);
+                return BadRequest("Registration failed. Please check your input data.");
             }
 
-            return Ok("User successfully created.");
+            return Ok(result);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> LoginUser(LoginDTO loginDTO)
+        [HttpPost("login")]
+        public async Task<IActionResult> LoginUser([FromBody] LoginDTO loginDTO)
         {
             if (!ModelState.IsValid)
             {
@@ -52,23 +51,22 @@ namespace ECommerce_API.Controllers
                 return BadRequest(errorMessage);
             }
 
-            var user = await _accountService.LoginUser(loginDTO);
+            var authenticationResponse = await _accountService.LoginUser(loginDTO);
 
-            if (user == null)
+            if (authenticationResponse == null)
             {
                 return Unauthorized("Invalid email or password.");
             }
 
-            return Ok("Successfully logged in.");
+            return Ok(authenticationResponse);
         }
 
-        [HttpGet]
+        [HttpGet("sign-out")]
         public async Task<IActionResult> LogoutUser()
         {
             await _accountService.LogoutUser();
 
-            return Ok();
+            return Ok("Successfully logged out.");
         }
-
     }
 }

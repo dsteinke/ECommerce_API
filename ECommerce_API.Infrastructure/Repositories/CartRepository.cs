@@ -1,5 +1,6 @@
 ﻿using ECommerce_API.Application;
 using ECommerce_API.Core;
+using ECommerce_API.Core.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce_API.Infrastructure
@@ -11,6 +12,16 @@ namespace ECommerce_API.Infrastructure
         public CartRepository(ECommerceDbContext context)
         {
             _context = context;
+        }
+
+        public async Task<Cart> AddCartToUser(ApplicationUser user)
+        {
+            var cart = new Cart { UserId = user.Id };
+            _context.Carts.Add(cart);
+
+            await _context.SaveChangesAsync();
+
+            return cart;
         }
 
         public async Task AddItemToCart(Guid userId, Guid productId, int quantity)

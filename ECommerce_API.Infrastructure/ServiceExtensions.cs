@@ -1,4 +1,5 @@
 ﻿using ECommerce_API.Core.Identity;
+using ECommerce_API.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

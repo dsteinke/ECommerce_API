@@ -2,6 +2,7 @@ using ECommerce_API.Application;
 using ECommerce_API.Application.Interfaces;
 using ECommerce_API.Application.Services;
 using ECommerce_API.Infrastructure;
+using ECommerce_API.Infrastructure.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -13,6 +14,7 @@ builder.Services.AddDbContext<ECommerceDbContext>(options =>
 });
 
 // Add services to the container.
+builder.Services.AddTransient<IJwtService, JwtService>();
 builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();

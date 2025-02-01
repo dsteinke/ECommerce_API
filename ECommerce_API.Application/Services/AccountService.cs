@@ -1,5 +1,6 @@
 ﻿using ECommerce_API.Application.DTO.Identity;
 using ECommerce_API.Application.Interfaces;
+using ECommerce_API.Core;
 using ECommerce_API.Core.Identity;
 using Microsoft.AspNetCore.Identity;
 
@@ -9,17 +10,19 @@ namespace ECommerce_API.Application.Services
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly RoleManager<ApplicationRole> _roleManager;
+        private readonly IJwtService _jwtService;
+        private readonly ICartRepository _cartRepository;
 
         public AccountService
-            (SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
+            (SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, IJwtService jwtService, ICartRepository cartRepository)
         {
             _signInManager = signInManager;
             _userManager = userManager;
-            _roleManager = roleManager;
+            _jwtService = jwtService;
+            _cartRepository = cartRepository;
         }
 
-        public async Task<ApplicationUser> LoginUser(LoginDTO loginDTO)
+        public async Task<AuthenticationResponse> LoginUser(LoginDTO loginDTO)
         {
             var result = await _signInManager.PasswordSignInAsync
                 (loginDTO.Email, loginDTO.Password, isPersistent: false, lockoutOnFailure: false);
@@ -28,7 +31,7 @@ namespace ECommerce_API.Application.Services
             {
                 var user = await _userManager.FindByEmailAsync(loginDTO.Email);
 
-                return user;
+                return _jwtService.CreateJwtToken(user);
 
             }
             return null;
@@ -39,7 +42,7 @@ namespace ECommerce_API.Application.Services
             await _signInManager.SignOutAsync();
         }
 
-        public async Task<IdentityResult> RegisterUser(RegisterDTO registerDTO)
+        public async Task<AuthenticationResponse> RegisterUser(RegisterDTO registerDTO)
         {
             var user = new ApplicationUser()
             {
@@ -53,12 +56,14 @@ namespace ECommerce_API.Application.Services
             {
                 await _userManager.AddToRoleAsync(user, "Customer");
 
+                user.Cart = await _cartRepository.AddCartToUser(user);
+
                 await _signInManager.SignInAsync(user, isPersistent: false);
+
+                return _jwtService.CreateJwtToken(user);
             }
 
-            return result;
+            return null;
         }
-
-
     }
 }
