@@ -21,14 +21,6 @@ namespace ECommerce_API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> RegisterUser([FromBody] RegisterDTO registerDTO)
         {
-            if (!ModelState.IsValid)
-            {
-                var errorMessage = string.Join(" , ", ModelState.Values
-                    .SelectMany(x => x.Errors)
-                    .Select(e => e.ErrorMessage));
-
-                return BadRequest(errorMessage);
-            }
             var result = await _accountService.RegisterUser(registerDTO);
 
             if (result == null)
@@ -42,15 +34,6 @@ namespace ECommerce_API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> LoginUser([FromBody] LoginDTO loginDTO)
         {
-            if (!ModelState.IsValid)
-            {
-                var errorMessage = string.Join(" , ", ModelState.Values
-                    .SelectMany(x => x.Errors)
-                    .Select(e => e.ErrorMessage));
-
-                return BadRequest(errorMessage);
-            }
-
             var authenticationResponse = await _accountService.LoginUser(loginDTO);
 
             if (authenticationResponse == null)

@@ -6,5 +6,6 @@ namespace ECommerce_API.Application.Interfaces
     public interface IJwtService
     {
         AuthenticationResponse CreateJwtToken(ApplicationUser user);
+        string CreateRefreshToken();
     }
 }

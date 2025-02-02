@@ -1,4 +1,5 @@
 ﻿using ECommerce_API.Application;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce_API.Controllers
@@ -24,6 +25,7 @@ namespace ECommerce_API.Controllers
             return Ok(productAddDTO);
         }
 
+        [Authorize]
         [HttpGet("products")]
         public async Task<IActionResult> GetAllProducts()
         {
@@ -31,6 +33,7 @@ namespace ECommerce_API.Controllers
 
             return Ok(result);
         }
+
 
         [HttpGet("{productId}")]
         public async Task<IActionResult> GetProductById(Guid productId)
