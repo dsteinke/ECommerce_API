@@ -1,7 +1,7 @@
 ﻿using ECommerce_API.Application.DTO.Identity;
 using ECommerce_API.Application.Interfaces;
-using ECommerce_API.Core;
 using ECommerce_API.Core.Identity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
 namespace ECommerce_API.Application.Services
@@ -22,7 +22,7 @@ namespace ECommerce_API.Application.Services
             _cartRepository = cartRepository;
         }
 
-        public async Task<AuthenticationResponse> LoginUser(LoginDTO loginDTO)
+        public async Task<(AuthenticationResponse, string)> LoginUser(LoginDTO loginDTO)
         {
             var result = await _signInManager.PasswordSignInAsync
                 (loginDTO.Email, loginDTO.Password, isPersistent: false, lockoutOnFailure: false);
@@ -31,10 +31,17 @@ namespace ECommerce_API.Application.Services
             {
                 var user = await _userManager.FindByEmailAsync(loginDTO.Email);
 
-                return _jwtService.CreateJwtToken(user);
+                var jwtToken = _jwtService.CreateJwtToken(user);
+                var refreshToken = _jwtService.CreateRefreshToken();
 
+                user.RefreshToken = refreshToken;
+                user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7);
+
+                await _userManager.UpdateAsync(user);
+
+                return (jwtToken, refreshToken);
             }
-            return null;
+            return (null, null);
         }
 
         public async Task LogoutUser()

@@ -1,5 +1,4 @@
-﻿using ECommerce_API.Core;
-using ECommerce_API.Core.Identity;
+﻿using ECommerce_API.Core.Identity;
 
 namespace ECommerce_API.Application.Interfaces
 {
@@ -7,5 +6,6 @@ namespace ECommerce_API.Application.Interfaces
     {
         AuthenticationResponse CreateJwtToken(ApplicationUser user);
         string CreateRefreshToken();
+        Task<(AuthenticationResponse, string)> GetRefreshToken(string refreshToken);
     }
 }

@@ -30,7 +30,6 @@ namespace ECommerce_API.Infrastructure
 
         public static void AddIdentityInfrastructure(this IServiceCollection services)
         {
-            // 🔹 Identity konfigurieren
             services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
             {
                 options.Password.RequiredLength = 5;

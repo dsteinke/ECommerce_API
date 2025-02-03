@@ -1,10 +1,12 @@
 ﻿using ECommerce_API.Application.Interfaces;
-using ECommerce_API.Core;
 using ECommerce_API.Core.Identity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace ECommerce_API.Infrastructure.Identity
@@ -12,10 +14,12 @@ namespace ECommerce_API.Infrastructure.Identity
     public class JwtService : IJwtService
     {
         private readonly IConfiguration _configuration;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public JwtService(IConfiguration configuration)
+        public JwtService(IConfiguration configuration, UserManager<ApplicationUser> userManager)
         {
             _configuration = configuration;
+            _userManager = userManager;
         }
 
         public AuthenticationResponse CreateJwtToken(ApplicationUser user)
@@ -60,7 +64,31 @@ namespace ECommerce_API.Infrastructure.Identity
 
         public string CreateRefreshToken()
         {
-            throw new NotImplementedException();
+            var randomNumber = new byte[32];
+            using (var rng = new RNGCryptoServiceProvider())
+            {
+                rng.GetBytes(randomNumber);
+            }
+            return Convert.ToBase64String(randomNumber);
+        }
+
+        public async Task<(AuthenticationResponse, string)> GetRefreshToken(string refreshToken)
+        {
+            var user = await _userManager.Users
+                .FirstOrDefaultAsync(u => u.RefreshToken == refreshToken && u.RefreshTokenExpiryTime > DateTime.UtcNow);
+
+            if (user == null)
+                throw new SecurityTokenException("Invalid or expired refresh token.");
+            
+            var jwtToken = CreateJwtToken(user);
+
+            var newRefreshToken = CreateRefreshToken();
+
+            user.RefreshToken = newRefreshToken;
+            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7);
+            await _userManager.UpdateAsync(user);
+
+            return (jwtToken, newRefreshToken);
         }
     }
 }
