@@ -9,24 +9,32 @@ namespace ECommerce_API.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;
-        private readonly ILogger<ProductController> _logger;
 
-        public ProductController(IProductService productService, ILogger<ProductController> logger)
+        public ProductController(IProductService productService)
         {
             _productService = productService;
-            _logger = logger;
         }
 
+        /// <summary>
+        /// Creates a new product
+        /// </summary>
+        /// <param name="productAddDTO"></param>
+        /// <returns></returns>
         [HttpPost("create")]
         public async Task<IActionResult> CreateProduct([FromBody] ProductAddDTO productAddDTO)
         {
             await _productService.AddProduct(productAddDTO);
 
-            return Ok(productAddDTO);
+            return Ok();
         }
 
+        /// <summary>
+        /// Get all products
+        /// </summary>
+        /// <returns></returns>
         [Authorize]
         [HttpGet("products")]
+        [ProducesResponseType(typeof(List<ProductResponseDTO>), 200)]
         public async Task<IActionResult> GetAllProducts()
         {
             var result = await _productService.GetAllProducts();
@@ -34,8 +42,13 @@ namespace ECommerce_API.Controllers
             return Ok(result);
         }
 
-
+        /// <summary>
+        /// Gets product by ProductId
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
         [HttpGet("{productId}")]
+        [ProducesResponseType(typeof(ProductResponseDTO), 200)]
         public async Task<IActionResult> GetProductById(Guid productId)
         {
             var result = await _productService.GetProductById(productId);
@@ -43,7 +56,13 @@ namespace ECommerce_API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Searches for products
+        /// </summary>
+        /// <param name="productDTO"></param>
+        /// <returns></returns>
         [HttpGet("search")]
+        [ProducesResponseType(typeof(List<ProductResponseDTO>), 200)]
         public async Task<IActionResult> SearchProduct([FromQuery] ProductRequestDTO productDTO)
         {
             var result = await _productService.SearchProducts(productDTO);
@@ -51,6 +70,11 @@ namespace ECommerce_API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Updates existing product
+        /// </summary>
+        /// <param name="productUpdateDTO"></param>
+        /// <returns></returns>
         [HttpPut("edit")]
         public async Task<IActionResult> UpdateProduct([FromBody] ProductUpdateDTO productUpdateDTO)
         {
@@ -59,6 +83,11 @@ namespace ECommerce_API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Deletes product by ProductId
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
         [HttpDelete("delete/{productId}")]
         public async Task<IActionResult> DeleteProduct(Guid productId)
         {

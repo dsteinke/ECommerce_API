@@ -13,11 +13,8 @@ namespace ECommerce_API.Application
             _mapper = mapper;
         }
 
-        public async Task<ProductResponseDTO> AddProduct(ProductAddDTO? productAddDTO)
+        public async Task<ProductResponseDTO> AddProduct(ProductAddDTO productAddDTO)
         {
-            if (productAddDTO == null)
-                throw new ArgumentNullException(nameof(productAddDTO));
-
             var product = productAddDTO.ToProduct();
 
             product.ProductId = Guid.NewGuid();

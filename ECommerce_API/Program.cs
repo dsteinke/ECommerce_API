@@ -1,6 +1,8 @@
 using ECommerce_API.Application;
 using ECommerce_API.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,10 +22,18 @@ builder.Services.ConfigureAuthentication(builder.Configuration);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    var xmlFile = $"{AppDomain.CurrentDomain.BaseDirectory}{Path.DirectorySeparatorChar}ECommerce_API.xml";
+    c.IncludeXmlComments(xmlFile);
+});
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 //Logging(Serilog)
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .CreateLogger();
+
 builder.Host.ConfigureSerilog();
 
 var app = builder.Build();

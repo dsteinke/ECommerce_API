@@ -3,7 +3,6 @@ using ECommerce_API.Application.DTO.Identity;
 using ECommerce_API.Application.Interfaces;
 using ECommerce_API.Core.Identity;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce_API.Controllers
@@ -15,16 +14,20 @@ namespace ECommerce_API.Controllers
     {
         private readonly IAccountService _accountService;
         private readonly IJwtService _jwtService;
-        private readonly UserManager<ApplicationUser> _userManager;
 
-        public AccountController(IAccountService accountService, IJwtService jwtService, UserManager<ApplicationUser> userManager)
+        public AccountController(IAccountService accountService, IJwtService jwtService)
         {
             _accountService = accountService;
             _jwtService = jwtService;
-            _userManager = userManager;
         }
 
+        /// <summary>
+        /// Registers new user
+        /// </summary>
+        /// <param name="registerDTO"></param>
+        /// <returns></returns>
         [HttpPost("register")]
+        [ProducesResponseType(typeof(AuthenticationResponse), 200)]
         public async Task<IActionResult> RegisterUser([FromBody] RegisterDTO registerDTO)
         {
             var result = await _accountService.RegisterUser(registerDTO);
@@ -35,7 +38,13 @@ namespace ECommerce_API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Login of existing user
+        /// </summary>
+        /// <param name="loginDTO"></param>
+        /// <returns></returns>
         [HttpPost("login")]
+        [ProducesResponseType(typeof(AuthenticationResponse), 200)]
         public async Task<IActionResult> LoginUser([FromBody] LoginDTO loginDTO)
         {
             var (authenticationResponse, refreshToken) = await _accountService.LoginUser(loginDTO);
@@ -56,6 +65,10 @@ namespace ECommerce_API.Controllers
             return Ok(authenticationResponse);
         }
 
+        /// <summary>
+        /// Signs out user
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("sign-out")]
         public async Task<IActionResult> LogoutUser()
         {
@@ -66,6 +79,10 @@ namespace ECommerce_API.Controllers
             return Ok("Successfully logged out.");
         }
 
+        /// <summary>
+        /// Refreshes the access token using the refresh token stored in the cookie.
+        /// </summary>
+        /// <returns></returns>
         [HttpPost("refresh-token")]
         public async Task<IActionResult> RefreshToken()
         {

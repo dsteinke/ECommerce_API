@@ -8,22 +8,30 @@ namespace ECommerce_API.Controllers
     public class CartController : ControllerBase
     {
         private readonly ICartService _cartService;
-        private readonly ILogger<CartController> _logger;
 
-        public CartController(ICartService cartService, ILogger<CartController> logger)
+        public CartController(ICartService cartService)
         {
             _cartService = cartService;
-            _logger = logger;
         }
 
+        /// <summary>
+        /// Gets the cart of user by UserId
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         [HttpGet("{userId}")]
-        public async Task<IActionResult> GetCartByUserId([FromRoute] Guid userId)
+        public async Task<CartResponseDTO?> GetCartByUserId([FromRoute] Guid userId)
         {
             var cart = await _cartService.GetCartByUserId(userId);
 
-            return Ok(cart);
+            return cart;
         }
 
+        /// <summary>
+        /// Adds item to cart
+        /// </summary>
+        /// <param name="cartAddDTO"></param>
+        /// <returns></returns>
         [HttpPost("add-item")]
         public async Task<IActionResult> AddItemToCart([FromBody] CartItemAddDTO cartAddDTO)
         {
@@ -33,6 +41,13 @@ namespace ECommerce_API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Changes the quantity of item in cart
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="productId"></param>
+        /// <param name="quantity"></param>
+        /// <returns></returns>
         [HttpPut("change-quantity")]
         public async Task<IActionResult> ChangeQuantityOfItem
             ([FromQuery] Guid userId, [FromQuery] Guid productId, [FromQuery] int quantity)
@@ -42,6 +57,12 @@ namespace ECommerce_API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Removes item from cart
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="productId"></param>
+        /// <returns></returns>
         [HttpDelete("remove-item")]
         public async Task<IActionResult> RemoveItemFromCart
             ([FromQuery] Guid userId, [FromQuery] Guid productId)

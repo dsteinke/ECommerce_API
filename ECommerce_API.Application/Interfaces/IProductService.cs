@@ -2,7 +2,7 @@
 {
     public interface IProductService
     {
-        Task<ProductResponseDTO> AddProduct(ProductAddDTO? productAddDTO);
+        Task<ProductResponseDTO> AddProduct(ProductAddDTO productAddDTO);
         Task<List<ProductResponseDTO>> GetAllProducts();
         Task<ProductResponseDTO> GetProductById(Guid productId);
         Task<List<ProductResponseDTO>> SearchProducts(ProductRequestDTO productDTO);
