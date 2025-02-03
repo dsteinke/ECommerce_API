@@ -17,10 +17,10 @@ namespace ECommerce_API.Application
             return new Product
             {
                 ProductId = ProductId,
-                Name = Name!,
-                Description = Description!,
+                Name = Name,
+                Description = Description,
                 Price = Price,
-                Category = Category!
+                Category = Category
             };
         }
     }

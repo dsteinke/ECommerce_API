@@ -82,10 +82,7 @@ namespace ECommerce_API.Application
                 throw new ArgumentNullException
                     ($"Given ProductId: {productUpdateDTO.ProductId} does not exist", nameof(productToUpdate));
 
-            productToUpdate.Name = productUpdateDTO.Name;
-            productToUpdate.Description = productUpdateDTO.Description;
-            productToUpdate.Price = productUpdateDTO.Price;
-            productToUpdate.Category = productUpdateDTO.Category;
+            _mapper.Map(productUpdateDTO, productToUpdate);
 
             await _productRepository.UpdateProduct(productToUpdate);
 

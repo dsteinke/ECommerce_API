@@ -1,7 +1,6 @@
 using ECommerce_API.Application;
 using ECommerce_API.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
