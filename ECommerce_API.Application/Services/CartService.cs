@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ECommerce_API.Core;
 
 namespace ECommerce_API.Application
 {
@@ -18,6 +19,20 @@ namespace ECommerce_API.Application
             await _cartRepository.AddItemToCart(userId, productId, quantity);
         }
 
+        public decimal CalculateTotal(Cart cart)
+        {
+            decimal total = 0;
+
+            if(cart.CartItems.Count > 0)
+            {
+                total = cart.CartItems.Sum(item => item.Product.Price * item.Quantity);
+
+                return total;
+            }
+
+            return total;
+        }
+
         public async Task<CartResponseDTO> GetCartByUserId(Guid userId)
         {
             var cart = await _cartRepository.GetCartByUserId(userId);
@@ -25,7 +40,11 @@ namespace ECommerce_API.Application
             if (cart == null)
                 throw new ArgumentNullException(nameof(cart));
 
+            var total = CalculateTotal(cart);
+
             var response = _mapper.Map<CartResponseDTO>(cart);
+            
+            response.TotalPrice = total;
 
             return response;
         }
