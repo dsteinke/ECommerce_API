@@ -139,7 +139,7 @@
 								},
 								{
 									"key": "category",
-									"value": "Elektronik",
+									"value": "Электроникa",
 									"description": "Case sensitive in SQLite",
 									"disabled": true
 								}
@@ -215,7 +215,14 @@
 					},
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiI4ZDg0NGRiNi1mNjM4LTQ1NDgtOTU1NS00ZWNmN2I4MmVmYjkiLCJpYXQiOjE3Mzg2NzI4NjEsIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTczODY3MjkyMSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.i3Hg9xisQq7Toz8kRGUizHQ9QcYCR7SZODzcfbGrN2s",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -229,7 +236,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7174/api/v1/cart/1b565ffa-8ee5-4794-b316-f8e268400065",
+							"raw": "https://localhost:7174/api/v1/cart/E3BBCFD7-3A5F-4D37-90E5-71A74D37DCF3",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -239,7 +246,7 @@
 								"api",
 								"v1",
 								"cart",
-								"1b565ffa-8ee5-4794-b316-f8e268400065"
+								"E3BBCFD7-3A5F-4D37-90E5-71A74D37DCF3"
 							]
 						}
 					},
@@ -249,13 +256,20 @@
 					"name": "AddItemToCart",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiI4ZDg0NGRiNi1mNjM4LTQ1NDgtOTU1NS00ZWNmN2I4MmVmYjkiLCJpYXQiOjE3Mzg2NzI4NjEsIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTczODY3MjkyMSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.i3Hg9xisQq7Toz8kRGUizHQ9QcYCR7SZODzcfbGrN2s",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"userId\": \"1b565ffa-8ee5-4794-b316-f8e268400065\",\r\n        \"productId\": \"3dddb0c0-401b-409c-9a4c-deb3bf1965a7\",\r\n        \"quantity\": \"1\"\r\n    }",
+							"raw": "    {\r\n        \"userId\": \"e3bbcfd7-3a5f-4d37-90e5-71a74d37dcf3\",\r\n        \"productId\": \"3dddb0c0-401b-409c-9a4c-deb3bf1965a7\",\r\n        \"quantity\": \"2\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -283,7 +297,14 @@
 					"name": "ChangeQuantityOfItem",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiI5NGQ4NmU3Mi0zYjU2LTRkNGItYmVmYi1mZDYyOTYzZjJhOTciLCJpYXQiOjE3Mzg2NzExODksIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTczODY3MTI0OSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.vU8ohkKtNqFtHN0zgUjUkCDxhGK_JUsqxCQr6xO_M4s",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PUT",
 						"header": [],
@@ -331,7 +352,14 @@
 					"name": "RemoveItemFromCart",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiI5NGQ4NmU3Mi0zYjU2LTRkNGItYmVmYi1mZDYyOTYzZjJhOTciLCJpYXQiOjE3Mzg2NzExODksIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTczODY3MTI0OSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.vU8ohkKtNqFtHN0zgUjUkCDxhGK_JUsqxCQr6xO_M4s",
+									"type": "string"
+								}
+							]
 						},
 						"method": "DELETE",
 						"header": [],
@@ -383,7 +411,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"personName\": \"Michael\",\r\n    \"email\": \"michael@example.com\",\r\n    \"password\": \"test.123\",\r\n    \"confirmPassword\": \"test.123\"\r\n}",
+							"raw": "{\r\n    \"personName\": \"Sergey\",\r\n    \"email\": \"sergey@example.com\",\r\n    \"password\": \"test.123\",\r\n    \"confirmPassword\": \"test.123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -414,7 +442,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"michael@example.com\",\r\n    \"password\": \"test.123\"\r\n}",
+							"raw": "{\r\n    \"email\": \"sergey@example.com\",\r\n    \"password\": \"test.123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
