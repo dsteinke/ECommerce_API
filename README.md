@@ -31,8 +31,15 @@
 - Swagger UI
 - Postman Collection with Endpoints in Solution
 
+## Notes
+- Postman Collection with Endpoints in Solution
+- ecommerce_demo.db file is currently in ECommerce_API, but should be ECommerce_API.Infrastructure (with SQLite you cannot simply move the local db-file)
+
 ## To do:
 - Order Function
 - Unit Tests
 - Migration from SQLite to PostgreSQL
 - Containerization with Docker
+
+
+Created by dsteinke
