@@ -1,46 +1,99 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ECommerce_API.Application;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly ILogger<ProductController> _logger;
+        private readonly IProductService _productService;
 
-        public ProductController(ILogger<ProductController> logger)
+        public ProductController(IProductService productService)
         {
-            _logger = logger;
+            _productService = productService;
         }
 
-        public async Task<IActionResult> CreateProduct()
+        /// <summary>
+        /// Creates a new product
+        /// </summary>
+        /// <param name="productAddDTO"></param>
+        /// <returns></returns>
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateProduct([FromBody] ProductAddDTO productAddDTO)
         {
-            throw new NotImplementedException();
+            await _productService.AddProduct(productAddDTO);
+
+            return Ok();
         }
 
+        /// <summary>
+        /// Get all products
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet("products")]
+        [ProducesResponseType(typeof(List<ProductResponseDTO>), 200)]
         public async Task<IActionResult> GetAllProducts()
         {
-            throw new NotImplementedException();
+            var result = await _productService.GetAllProducts();
+
+            return Ok(result);
         }
 
+        /// <summary>
+        /// Gets product by ProductId
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        [HttpGet("{productId}")]
+        [ProducesResponseType(typeof(ProductResponseDTO), 200)]
         public async Task<IActionResult> GetProductById(Guid productId)
         {
-            throw new NotImplementedException();
+            var result = await _productService.GetProductById(productId);
+
+            return Ok(result);
         }
 
-        public async Task<IActionResult> SearchProduct()
+        /// <summary>
+        /// Searches for products
+        /// </summary>
+        /// <param name="productDTO"></param>
+        /// <returns></returns>
+        [HttpGet("search")]
+        [ProducesResponseType(typeof(List<ProductResponseDTO>), 200)]
+        public async Task<IActionResult> SearchProduct([FromQuery] ProductRequestDTO productDTO)
         {
-            throw new NotImplementedException();
+            var result = await _productService.SearchProducts(productDTO);
+
+            return Ok(result);
         }
 
-        public async Task<IActionResult> UpdateProduct(Guid productId)
+        /// <summary>
+        /// Updates existing product
+        /// </summary>
+        /// <param name="productUpdateDTO"></param>
+        /// <returns></returns>
+        [HttpPut("edit")]
+        public async Task<IActionResult> UpdateProduct([FromBody] ProductUpdateDTO productUpdateDTO)
         {
-            throw new NotImplementedException();
+            await _productService.UpdateProduct(productUpdateDTO);
+
+            return Ok();
         }
 
+        /// <summary>
+        /// Deletes product by ProductId
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        [HttpDelete("delete/{productId}")]
         public async Task<IActionResult> DeleteProduct(Guid productId)
         {
-            throw new NotImplementedException();
+            await _productService.DeleteProduct(productId);
+
+            return Ok();
         }
 
     }
