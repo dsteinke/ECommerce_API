@@ -51,7 +51,7 @@ namespace ECommerce_API.Controllers
 
             if (authenticationResponse == null)
             {
-                return Unauthorized("Invalid email or password.");
+                return Unauthorized(new { message = "Invalid email or password." });
             }
 
             Response.Cookies.Append("refreshToken", refreshToken, new CookieOptions
@@ -76,7 +76,7 @@ namespace ECommerce_API.Controllers
 
             Response.Cookies.Delete("refreshToken");
 
-            return Ok("Successfully logged out.");
+            return Ok(new { message = "Successfully logged out." });
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace ECommerce_API.Controllers
         {
             if (!Request.Cookies.TryGetValue("refreshToken", out var refreshToken))
             {
-                return Unauthorized("Refresh token is missing.");
+                return Unauthorized(new { message = "Refresh token is missing." });
             }
 
             var (authenticationResponse, newRefreshToken) = await _jwtService.GetRefreshToken(refreshToken);
