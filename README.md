@@ -34,11 +34,11 @@
 ## Authentication
 ### Test user
 
-UserId: 1B565FFA-8EE5-4794-B316-F8E268400065  
+**UserId: 1B565FFA-8EE5-4794-B316-F8E268400065**  
 "email": "michael@example.com",  
 "password": "test.123"  
 
-UserId: E3BBCFD7-3A5F-4D37-90E5-71A74D37DCF3  
+**UserId: E3BBCFD7-3A5F-4D37-90E5-71A74D37DCF3**  
 "email": "sergey@example.com",  
 "password": "test.123"  
 
@@ -50,7 +50,7 @@ UserId: E3BBCFD7-3A5F-4D37-90E5-71A74D37DCF3
 - Order Function
 - Unit Tests
 - Migration from SQLite to PostgreSQL
-- Containerization with Docker
+- Containerization with Docker  
 
 
 Created by dsteinke
