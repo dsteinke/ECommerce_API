@@ -20,11 +20,12 @@ namespace ECommerce_API.Controllers
         /// <param name="userId"></param>
         /// <returns></returns>
         [HttpGet("{userId}")]
-        public async Task<CartResponseDTO?> GetCartByUserId([FromRoute] Guid userId)
+        [ProducesResponseType(typeof(CartResponseDTO), 200)]
+        public async Task<IActionResult> GetCartByUserId([FromRoute] Guid userId)
         {
             var cart = await _cartService.GetCartByUserId(userId);
 
-            return cart;
+            return Ok(cart);
         }
 
         /// <summary>
