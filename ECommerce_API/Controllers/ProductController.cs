@@ -32,7 +32,6 @@ namespace ECommerce_API.Controllers
         /// Get all products
         /// </summary>
         /// <returns></returns>
-        [Authorize]
         [HttpGet("products")]
         [ProducesResponseType(typeof(List<ProductResponseDTO>), 200)]
         public async Task<IActionResult> GetAllProducts()
