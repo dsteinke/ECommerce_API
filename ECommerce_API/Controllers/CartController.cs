@@ -1,4 +1,5 @@
 ﻿using ECommerce_API.Application;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce_API.Controllers
@@ -19,6 +20,7 @@ namespace ECommerce_API.Controllers
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpGet("{userId}")]
         [ProducesResponseType(typeof(CartResponseDTO), 200)]
         public async Task<IActionResult> GetCartByUserId([FromRoute] Guid userId)
@@ -33,6 +35,7 @@ namespace ECommerce_API.Controllers
         /// </summary>
         /// <param name="cartAddDTO"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpPost("add-item")]
         public async Task<IActionResult> AddItemToCart([FromBody] CartItemAddDTO cartAddDTO)
         {
@@ -49,6 +52,7 @@ namespace ECommerce_API.Controllers
         /// <param name="productId"></param>
         /// <param name="quantity"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpPut("change-quantity")]
         public async Task<IActionResult> ChangeQuantityOfItem
             ([FromQuery] Guid userId, [FromQuery] Guid productId, [FromQuery] int quantity)
@@ -64,6 +68,7 @@ namespace ECommerce_API.Controllers
         /// <param name="userId"></param>
         /// <param name="productId"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpDelete("remove-item")]
         public async Task<IActionResult> RemoveItemFromCart
             ([FromQuery] Guid userId, [FromQuery] Guid productId)

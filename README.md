@@ -31,15 +31,26 @@
 - Swagger UI
 - Postman Collection with Endpoints in Solution
 
+## Authentication
+### Test user
+
+**UserId: 1B565FFA-8EE5-4794-B316-F8E268400065**  
+"email": "michael@example.com",  
+"password": "test.123"  
+
+**UserId: E3BBCFD7-3A5F-4D37-90E5-71A74D37DCF3**  
+"email": "sergey@example.com",  
+"password": "test.123"  
+
 ## Notes
-- Postman Collection with Endpoints in Solution
+- Postman Collection with Endpoints in Solution (under ECommerce_API)
 - ecommerce_demo.db file is currently in ECommerce_API, but should be ECommerce_API.Infrastructure (with SQLite you cannot simply move the local db-file)
 
 ## To do:
 - Order Function
 - Unit Tests
 - Migration from SQLite to PostgreSQL
-- Containerization with Docker
+- Containerization with Docker  
 
 
 Created by dsteinke

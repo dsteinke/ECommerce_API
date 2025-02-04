@@ -1,0 +1,506 @@
+{
+	"info": {
+		"_postman_id": "cfc9579e-a784-4cfd-8b75-388013c77fe7",
+		"name": "ECommerce_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33693453"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "AddProduct",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"Планшет\",\r\n        \"description\": \"Мощный планшет с 128 ГБ памяти\",\r\n        \"price\": 399.99,\r\n        \"category\": \"Электроника\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7174/api/v1/product/create",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7174",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllProducts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxYjU2NWZmYS04ZWU1LTQ3OTQtYjMxNi1mOGUyNjg0MDAwNjUiLCJqdGkiOiI5NWUwNThiNS1hZTdlLTRiZGItOWI4NS04MDYzNzE1OTZlY2IiLCJpYXQiOjE3Mzg2MDg0MjAsIm5hbWVpZCI6Im1pY2hhZWxAZXhhbXBsZS5jb20iLCJleHAiOjE3Mzg2MDg0ODAsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo3MTc0In0.gJv2cfFbes1QuAgwRiDINLfBbg7guI4hDKWUnSj0oDk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7174/api/v1/product/products",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7174",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProductById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7174/api/v1/product/3dddb0c0-401b-409c-9a4c-deb3bf1965a7",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7174",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"3dddb0c0-401b-409c-9a4c-deb3bf1965a7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SearchProduct",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7174/api/v1/product/search?name=Планшет",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7174",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"search"
+							],
+							"query": [
+								{
+									"key": "productId",
+									"value": "cd9f5e07-7811-4a0d-b0eb-7716e84b55d4",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "Планшет",
+									"description": "Case sensitive in SQLite"
+								},
+								{
+									"key": "description",
+									"value": "Мощный смартфон с 128 ГБ памяти",
+									"description": "Case sensitive in SQLite",
+									"disabled": true
+								},
+								{
+									"key": "price",
+									"value": "399.99",
+									"disabled": true
+								},
+								{
+									"key": "category",
+									"value": "Электроникa",
+									"description": "Case sensitive in SQLite",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateProduct",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\": \"79d401a1-1127-4dae-bb77-9970105f1dfb\",\r\n    \"name\": \"Планшет\",\r\n    \"price\": 399.99,\r\n    \"category\": \"Электроникa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7174/api/v1/product/edit/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7174",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"edit",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteProduct",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7174/api/v1/product/delete/766d7947-9bd3-434d-8573-8852ab86d67a",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7174",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"delete",
+								"766d7947-9bd3-434d-8573-8852ab86d67a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "GetCartByUserId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiI4ZDg0NGRiNi1mNjM4LTQ1NDgtOTU1NS00ZWNmN2I4MmVmYjkiLCJpYXQiOjE3Mzg2NzI4NjEsIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTczODY3MjkyMSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.i3Hg9xisQq7Toz8kRGUizHQ9QcYCR7SZODzcfbGrN2s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"userId\": \"\",\r\n        \"productId\": \"\",\r\n        \"quantity\": \"\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7174/api/v1/cart/E3BBCFD7-3A5F-4D37-90E5-71A74D37DCF3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7174",
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"E3BBCFD7-3A5F-4D37-90E5-71A74D37DCF3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddItemToCart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiI4ZDg0NGRiNi1mNjM4LTQ1NDgtOTU1NS00ZWNmN2I4MmVmYjkiLCJpYXQiOjE3Mzg2NzI4NjEsIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTczODY3MjkyMSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.i3Hg9xisQq7Toz8kRGUizHQ9QcYCR7SZODzcfbGrN2s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"userId\": \"e3bbcfd7-3a5f-4d37-90e5-71a74d37dcf3\",\r\n        \"productId\": \"3dddb0c0-401b-409c-9a4c-deb3bf1965a7\",\r\n        \"quantity\": \"2\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7174/api/v1/cart/add-item",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7174",
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"add-item"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ChangeQuantityOfItem",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiI5NGQ4NmU3Mi0zYjU2LTRkNGItYmVmYi1mZDYyOTYzZjJhOTciLCJpYXQiOjE3Mzg2NzExODksIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTczODY3MTI0OSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.vU8ohkKtNqFtHN0zgUjUkCDxhGK_JUsqxCQr6xO_M4s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"userId\": \"3f673ee1-96b9-49a7-bcf1-5b7787947eb4\",\r\n        \"productId\": \"cd9f5e07-7811-4a0d-b0eb-7716e84b55d4\",\r\n        \"quantity\": \"2\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7174/api/v1/cart/change-quantity?userId=1b565ffa-8ee5-4794-b316-f8e268400065&productId=3dddb0c0-401b-409c-9a4c-deb3bf1965a7&quantity=3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7174",
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"change-quantity"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1b565ffa-8ee5-4794-b316-f8e268400065"
+								},
+								{
+									"key": "productId",
+									"value": "3dddb0c0-401b-409c-9a4c-deb3bf1965a7"
+								},
+								{
+									"key": "quantity",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RemoveItemFromCart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiI5NGQ4NmU3Mi0zYjU2LTRkNGItYmVmYi1mZDYyOTYzZjJhOTciLCJpYXQiOjE3Mzg2NzExODksIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTczODY3MTI0OSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.vU8ohkKtNqFtHN0zgUjUkCDxhGK_JUsqxCQr6xO_M4s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"userId\": \"3f673ee1-96b9-49a7-bcf1-5b7787947eb4\",\r\n        \"productId\": \"cd9f5e07-7811-4a0d-b0eb-7716e84b55d4\",\r\n        \"quantity\": \"2\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7174/api/v1/cart/remove-item?userId=3f673ee1-96b9-49a7-bcf1-5b7787947eb4&productId=cd9f5e07-7811-4a0d-b0eb-7716e84b55d4",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7174",
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"remove-item"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "3f673ee1-96b9-49a7-bcf1-5b7787947eb4"
+								},
+								{
+									"key": "productId",
+									"value": "cd9f5e07-7811-4a0d-b0eb-7716e84b55d4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "RegisterUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"personName\": \"Sergey\",\r\n    \"email\": \"sergey@example.com\",\r\n    \"password\": \"test.123\",\r\n    \"confirmPassword\": \"test.123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7174/api/v1/account/register",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7174",
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LoginUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"sergey@example.com\",\r\n    \"password\": \"test.123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7174/api/v1/account/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7174",
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SignOutUser",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7174/api/v1/account/sign-out",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7174",
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"sign-out"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
