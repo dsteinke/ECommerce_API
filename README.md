@@ -43,7 +43,7 @@
 "password": "test.123"  
 
 ## Notes
-- Postman Collection with Endpoints in Solution
+- Postman Collection with Endpoints in Solution (under ECommerce_API)
 - ecommerce_demo.db file is currently in ECommerce_API, but should be ECommerce_API.Infrastructure (with SQLite you cannot simply move the local db-file)
 
 ## To do:
