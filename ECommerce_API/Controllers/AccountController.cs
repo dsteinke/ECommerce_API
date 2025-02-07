@@ -33,7 +33,7 @@ namespace ECommerce_API.Controllers
             var result = await _accountService.RegisterUser(registerDTO);
 
             if (result == null)
-                return BadRequest("Registration failed. Please check your input data.");
+                return BadRequest(new { message = "Registration failed. Please check your input data." });
 
             return Ok(result);
         }
@@ -59,7 +59,7 @@ namespace ECommerce_API.Controllers
                 HttpOnly = true,
                 Secure = true,
                 SameSite = SameSiteMode.Strict,
-                Expires = DateTime.UtcNow.AddDays(7) 
+                Expires = DateTime.UtcNow.AddDays(7)
             });
 
             return Ok(authenticationResponse);
