@@ -21,7 +21,6 @@ namespace ECommerce_API.Infrastructure
         {
             services.AddTransient<IJwtService, JwtService>();
             services.AddTransient<IAccountService, AccountService>();
-            services.AddTransient<IUserService, UserService>();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ICartRepository, CartRepository>();

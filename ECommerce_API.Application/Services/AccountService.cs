@@ -1,7 +1,6 @@
 ﻿using ECommerce_API.Application.DTO.Identity;
 using ECommerce_API.Application.Interfaces;
 using ECommerce_API.Core.Identity;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
 namespace ECommerce_API.Application.Services
