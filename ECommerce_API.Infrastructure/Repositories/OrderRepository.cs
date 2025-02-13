@@ -1,5 +1,6 @@
 ﻿using ECommerce_API.Application.Interfaces;
 using ECommerce_API.Core;
+using ECommerce_API.Core.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce_API.Infrastructure.Repositories
@@ -34,7 +35,7 @@ namespace ECommerce_API.Infrastructure.Repositories
                 .ToListAsync();
         }
 
-        public async Task<bool> UpdateOrderStatus(Guid orderId, string status)
+        public async Task<bool> UpdateOrderStatus(Guid orderId, OrderStatus status)
         {
             var order = await _context.Orders.FindAsync(orderId);
 

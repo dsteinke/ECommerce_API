@@ -1,4 +1,5 @@
 ﻿using ECommerce_API.Core;
+using ECommerce_API.Core.Enums;
 using ECommerce_API.Core.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -44,6 +45,10 @@ namespace ECommerce_API.Infrastructure
                 .WithMany(o => o.Orders)
                 .HasForeignKey(x => x.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Order>()
+                .Property(o => o.Status)
+                .HasConversion<string>();
 
             modelBuilder.Entity<OrderItem>()
                 .Property(o => o.ProductName)

@@ -46,7 +46,7 @@ namespace ECommerce_API.Application.Services
 
         public async Task<bool> UpdateOrderStatus(Guid orderId, OrderStatus status)
         {
-            var order = await _orderRepository.UpdateOrderStatus(orderId, status);
+            throw new NotImplementedException();
         }
     }
 }

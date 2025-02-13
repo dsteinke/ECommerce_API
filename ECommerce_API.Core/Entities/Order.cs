@@ -1,4 +1,5 @@
-﻿using ECommerce_API.Core.Identity;
+﻿using ECommerce_API.Core.Enums;
+using ECommerce_API.Core.Identity;
 
 namespace ECommerce_API.Core
 {
@@ -8,7 +9,7 @@ namespace ECommerce_API.Core
         public Guid UserId { get; set; }
         public decimal TotalAmount {  get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public string Status { get; set; } = "Pending";
+        public OrderStatus Status { get; set; } = OrderStatus.Pending;
 
         //Navigation Properties
         public ApplicationUser User { get; set; }
