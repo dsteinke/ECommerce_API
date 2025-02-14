@@ -219,7 +219,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiI4ZDg0NGRiNi1mNjM4LTQ1NDgtOTU1NS00ZWNmN2I4MmVmYjkiLCJpYXQiOjE3Mzg2NzI4NjEsIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTczODY3MjkyMSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.i3Hg9xisQq7Toz8kRGUizHQ9QcYCR7SZODzcfbGrN2s",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiI0NmVhNWQyNC01YTU3LTRkZGItOTQ2My1jOGZiZTc4YjUxN2MiLCJpYXQiOjE3Mzk1Mjk4OTMsIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTczOTUyOTk1MywiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.uFBxNU-S3M9ZnHCbzSyb5UqPZ9j8AjzyX-WAVcVDe0U",
 									"type": "string"
 								}
 							]
@@ -260,7 +260,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiI4ZDg0NGRiNi1mNjM4LTQ1NDgtOTU1NS00ZWNmN2I4MmVmYjkiLCJpYXQiOjE3Mzg2NzI4NjEsIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTczODY3MjkyMSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.i3Hg9xisQq7Toz8kRGUizHQ9QcYCR7SZODzcfbGrN2s",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiI0NmVhNWQyNC01YTU3LTRkZGItOTQ2My1jOGZiZTc4YjUxN2MiLCJpYXQiOjE3Mzk1Mjk4OTMsIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTczOTUyOTk1MywiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.uFBxNU-S3M9ZnHCbzSyb5UqPZ9j8AjzyX-WAVcVDe0U",
 									"type": "string"
 								}
 							]
@@ -495,6 +495,142 @@
 								"v1",
 								"account",
 								"sign-out"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "CheckoutOrder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7174/api/v1/order/checkout/e3bbcfd7-3a5f-4d37-90e5-71a74d37dcf3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7174",
+							"path": [
+								"api",
+								"v1",
+								"order",
+								"checkout",
+								"e3bbcfd7-3a5f-4d37-90e5-71a74d37dcf3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetOrderById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiIwNzBkZDUyMS01YzRmLTRlODAtOWM4Yi02MDM0ZjU2ZjUwMDkiLCJpYXQiOjE3Mzk1MzcxMTksIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTczOTUzNzE3OSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.k3IEe92CiMvW0Z3axkNf5DqhxE7Jefax85ngmpFzbbI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7174/api/v1/order/aad956dc-a997-4b0c-b362-00148fc374b7",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7174",
+							"path": [
+								"api",
+								"v1",
+								"order",
+								"aad956dc-a997-4b0c-b362-00148fc374b7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetOrdersByUserId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiIwNzdiN2YzZC1jNmMzLTQ2OGUtOTczNy0zNjc4NWI3NDIxYzAiLCJpYXQiOjE3Mzk1MzY2MzIsIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTczOTUzNjY5MiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.x4A-HWJK7KsH6yXudn9zDiGfE-HLYAMHOo9eGpsfHds",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7174/api/v1/order/orders/E3BBCFD7-3A5F-4D37-90E5-71A74D37DCF3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7174",
+							"path": [
+								"api",
+								"v1",
+								"order",
+								"orders",
+								"E3BBCFD7-3A5F-4D37-90E5-71A74D37DCF3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateOrderStatus",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiIwNzBkZDUyMS01YzRmLTRlODAtOWM4Yi02MDM0ZjU2ZjUwMDkiLCJpYXQiOjE3Mzk1MzcxMTksIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTczOTUzNzE3OSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.k3IEe92CiMvW0Z3axkNf5DqhxE7Jefax85ngmpFzbbI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7174/api/v1/order/update-status?orderId=aad956dc-a997-4b0c-b362-00148fc374b7&orderStatus=Delivered",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7174",
+							"path": [
+								"api",
+								"v1",
+								"order",
+								"update-status"
+							],
+							"query": [
+								{
+									"key": "orderId",
+									"value": "aad956dc-a997-4b0c-b362-00148fc374b7"
+								},
+								{
+									"key": "orderStatus",
+									"value": "Delivered",
+									"description": "Values: Pending,Shipped,Delivered,Cancelled"
+								}
 							]
 						}
 					},
