@@ -95,5 +95,14 @@ namespace ECommerce_API.Infrastructure
 
             await _context.SaveChangesAsync();
         }
+
+        public async Task ClearCart(Guid userId)
+        {
+            var cart = await _context.Carts
+                .Include(x => x.CartItems)
+                .FirstOrDefaultAsync(x => x.UserId == userId);
+
+            _context.CartItems.RemoveRange(cart.CartItems);
+        }
     }
 }

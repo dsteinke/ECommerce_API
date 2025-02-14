@@ -10,5 +10,6 @@ namespace ECommerce_API.Application
         Task RemoveItemFromCart(Guid userId, Guid productId);
         Task UpdateCartItemQuantity(Guid userId, Guid productId, int quantity);
         Task<Cart> GetCartByUserId(Guid userId);
+        Task ClearCart(Guid userId);
     }
 }

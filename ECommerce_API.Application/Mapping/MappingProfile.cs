@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ECommerce_API.Application.DTO.Order;
 using ECommerce_API.Core;
 
 namespace ECommerce_API.Application
@@ -14,6 +15,10 @@ namespace ECommerce_API.Application
             CreateMap<CartItem, CartItemResponseDTO>()
                 .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.Name))
                 .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Product.Price));
+            CreateMap<Order, OrderResponseDTO>()
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()))
+                .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items));
+            CreateMap<OrderItem, OrderItemDTO>();
         }
     }
 }
