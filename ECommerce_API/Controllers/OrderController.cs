@@ -1,6 +1,7 @@
 ﻿using ECommerce_API.Application.DTO.Order;
 using ECommerce_API.Application.Interfaces;
 using ECommerce_API.Core.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce_API.Controllers
@@ -21,6 +22,7 @@ namespace ECommerce_API.Controllers
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpPost("checkout/{userId}")]
         public async Task<IActionResult> CheckoutOrder([FromRoute] Guid userId)
         {
@@ -34,6 +36,7 @@ namespace ECommerce_API.Controllers
         /// </summary>
         /// <param name="orderId"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpGet("{orderId}")]
         [ProducesResponseType(typeof(OrderResponseDTO), 200)]
         public async Task<IActionResult> GetOrderById([FromRoute] Guid orderId)
@@ -48,6 +51,7 @@ namespace ECommerce_API.Controllers
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpGet("orders/{userId}")]
         [ProducesResponseType(typeof(List<OrderResponseDTO>), 200)]
         public async Task<IActionResult> GetOrdersByUserId([FromRoute] Guid userId)
