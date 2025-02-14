@@ -27,6 +27,9 @@
 ### **Cart Management**
 - Add, Remove, and Edit Products in the Cart
 
+### **Cart Management**
+- Checkout Order, Read Orders, and Edit Order Status
+
 ### **API Documentation and Testing**
 - Swagger UI
 - Postman Collection with Endpoints in Solution
