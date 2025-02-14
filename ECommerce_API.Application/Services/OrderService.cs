@@ -26,7 +26,7 @@ namespace ECommerce_API.Application.Services
 
             if (!cart.CartItems.Any())
             {
-                throw new InvalidOperationException("The cart is empty or does not exist.");
+                throw new InvalidOperationException("The cart is empty.");
             }
 
             var (orderItems, total) = CreateOrderItemsFromCart(cart);
@@ -34,7 +34,6 @@ namespace ECommerce_API.Application.Services
             var order = new Order
             {
                 UserId = userId,
-                User = cart.User,
                 Items = orderItems,
                 TotalAmount = total
             };
