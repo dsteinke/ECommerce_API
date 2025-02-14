@@ -10,6 +10,6 @@ namespace ECommerce_API.Core
 
         //Navigation Properties
         public ApplicationUser User { get; set; }
-        public List<CartItem>? CartItems { get; set; }
+        public List<CartItem> CartItems { get; set; }
     }
 }

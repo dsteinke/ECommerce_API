@@ -3,6 +3,7 @@ using ECommerce_API.Application.Interfaces;
 using ECommerce_API.Application.Services;
 using ECommerce_API.Core.Identity;
 using ECommerce_API.Infrastructure.Identity;
+using ECommerce_API.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -25,6 +26,8 @@ namespace ECommerce_API.Infrastructure
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ICartRepository, CartRepository>();
             services.AddTransient<ICartService, CartService>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IOrderService, OrderService>();
         }
 
         public static void AddIdentityInfrastructure(this IServiceCollection services)
