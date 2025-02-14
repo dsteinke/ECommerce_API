@@ -1,5 +1,8 @@
-﻿namespace ECommerce_API.Core.Enums
+﻿using System.Text.Json.Serialization;
+
+namespace ECommerce_API.Core.Enums
 {
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum OrderStatus
     {
         Pending = 0,

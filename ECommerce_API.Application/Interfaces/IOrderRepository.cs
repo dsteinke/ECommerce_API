@@ -7,7 +7,8 @@ namespace ECommerce_API.Application.Interfaces
     {
         Task CreateOrder(Order order);
         Task<Order?> GetOrderById(Guid orderId);
-        Task<IEnumerable<Order>?> GetOrdersByUserId(Guid userId);
+        Task<IEnumerable<Order>> GetOrdersByUserId(Guid userId);
         Task<bool> UpdateOrderStatus(Guid orderId, OrderStatus status);
+        Task SaveChangesAsync();
     }
 }

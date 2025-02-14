@@ -1,4 +1,6 @@
-﻿using ECommerce_API.Application.Interfaces;
+﻿using AutoMapper;
+using ECommerce_API.Application.DTO.Order;
+using ECommerce_API.Application.Interfaces;
 using ECommerce_API.Core;
 using ECommerce_API.Core.Enums;
 
@@ -7,46 +9,94 @@ namespace ECommerce_API.Application.Services
     public class OrderService : IOrderService
     {
         private readonly IOrderRepository _orderRepository;
+        private readonly ICartRepository _cartRepository;
+        private readonly IMapper _mapper;
 
-        public OrderService(IOrderRepository orderRepository)
+        public OrderService
+            (IOrderRepository orderRepository, ICartRepository cartRepository, IMapper mapper)
         {
             _orderRepository = orderRepository;
+            _cartRepository = cartRepository;
+            _mapper = mapper;
         }
 
-        public async Task<Order> CreateOrder(Guid userId, List<OrderItem> items)
+        public async Task<OrderResponseDTO> CreateOrder(Guid userId)
         {
-            var total = items.Sum(x => x.Quantity *  x.Price);
+            var cart = await _cartRepository.GetCartByUserId(userId);
+
+            if (!cart.CartItems.Any())
+            {
+                throw new InvalidOperationException("The cart is empty or does not exist.");
+            }
+
+            var (orderItems, total) = CreateOrderItemsFromCart(cart);
 
             var order = new Order
             {
                 UserId = userId,
-                Items = items,
+                User = cart.User,
+                Items = orderItems,
                 TotalAmount = total
             };
 
             await _orderRepository.CreateOrder(order);
 
-            return order;
+            await _cartRepository.ClearCart(userId);
+
+            await _orderRepository.SaveChangesAsync();
+
+            var response = _mapper.Map<OrderResponseDTO>(order);
+
+            return response;
         }
 
-        public async Task<Order?> GetOrderById(Guid orderId)
+        public async Task<OrderResponseDTO> GetOrderById(Guid orderId)
         {
             var order = await _orderRepository.GetOrderById(orderId);
 
             if (order == null)
                 throw new KeyNotFoundException($"No order with orderId: {orderId} found.");
 
-            return order;
+            var response = _mapper.Map<OrderResponseDTO>(order);
+
+            return response;
         }
 
-        public async Task<IEnumerable<Order>?> GetOrdersByUserId(Guid userId)
+        public async Task<IEnumerable<OrderResponseDTO>> GetOrdersByUserId(Guid userId)
         {
-            return await _orderRepository.GetOrdersByUserId(userId);
+            var orders =  await _orderRepository.GetOrdersByUserId(userId);
+
+            var response = _mapper.Map<IEnumerable<OrderResponseDTO>>(orders);
+
+            return response;
         }
 
         public async Task<bool> UpdateOrderStatus(Guid orderId, OrderStatus status)
         {
-            throw new NotImplementedException();
+            var order = await _orderRepository.GetOrderById(orderId);
+
+            if(order == null)
+                throw new KeyNotFoundException($"No order with orderId: {orderId} found.");
+
+            order.Status = status;
+
+            await _orderRepository.SaveChangesAsync();
+            
+            return true;
+        }
+
+        private (List<OrderItem> items, decimal total) CreateOrderItemsFromCart(Cart cart)
+        {
+            var items = cart.CartItems.Select(ci => new OrderItem
+            {
+                ProductId = ci.ProductId,
+                ProductName = ci.Product.Name,
+                Quantity = ci.Quantity,
+                Price = ci.Product.Price
+            }).ToList();
+
+            var total = items.Sum(item => item.Quantity * item.Price);
+            return (items, total);
         }
     }
 }
