@@ -42,12 +42,7 @@ namespace ECommerce_API.Application
         {
             var products = await _productRepository.GetAllProducts();
 
-            var response = new List<ProductResponseDTO>();
-
-            foreach (var product in products)
-            {
-                response.Add(_mapper.Map<ProductResponseDTO>(product));
-            }
+            var response = _mapper.Map<List<ProductResponseDTO>>(products);
 
             return response;
         }
@@ -79,8 +74,8 @@ namespace ECommerce_API.Application
             var productToUpdate = await _productRepository.GetProductById(productUpdateDTO.ProductId);
 
             if (productToUpdate == null)
-                throw new ArgumentNullException
-                    ($"Given ProductId: {productUpdateDTO.ProductId} does not exist", nameof(productToUpdate));
+                throw new KeyNotFoundException
+                    ($"Given ProductId: {productUpdateDTO.ProductId} does not exist");
 
             _mapper.Map(productUpdateDTO, productToUpdate);
 
