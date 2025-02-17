@@ -8,7 +8,7 @@
 - **JWT Authentication**
 - **Swagger**
 - **AutoMapper**
-- **xUnit**
+- **xUnit(with Moq and FluentAssertions)**
 
 ## Architecture
 - Repository Pattern with Clean Architecture
