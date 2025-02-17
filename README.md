@@ -8,6 +8,7 @@
 - **JWT Authentication**
 - **Swagger**
 - **AutoMapper**
+- **xUnit**
 
 ## Architecture
 - Repository Pattern with Clean Architecture
@@ -31,6 +32,7 @@
 - Checkout Order, Read Orders, and Edit Order Status
 
 ### **API Documentation and Testing**
+- Unit tests (at the moment just for ProductService)
 - Swagger UI
 - Postman Collection with Endpoints in Solution
 
@@ -50,7 +52,7 @@
 - ecommerce_demo.db file is currently in ECommerce_API, but should be ECommerce_API.Infrastructure (with SQLite you cannot simply move the local db-file)
 
 ## To do:
-- Unit Tests
+- Complete Unit Tests
 - Migration from SQLite to PostgreSQL
 - Containerization with Docker  
 
