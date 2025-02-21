@@ -65,10 +65,8 @@ namespace ECommerce_API.Infrastructure.Identity
         public string CreateRefreshToken()
         {
             var randomNumber = new byte[32];
-            using (var rng = new RNGCryptoServiceProvider())
-            {
-                rng.GetBytes(randomNumber);
-            }
+            RandomNumberGenerator.Fill(randomNumber);
+
             return Convert.ToBase64String(randomNumber);
         }
 
