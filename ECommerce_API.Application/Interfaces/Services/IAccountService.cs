@@ -1,8 +1,8 @@
-﻿using ECommerce_API.Application.DTO.Identity;
-using ECommerce_API.Core.Identity;
+﻿using ECommerce.Application.DTO.Identity;
+using ECommerce.Domain.Identity;
 using Microsoft.AspNetCore.Identity;
 
-namespace ECommerce_API.Application.Interfaces.Services
+namespace ECommerce.Application.Interfaces.Services
 {
     public interface IAccountService
     {

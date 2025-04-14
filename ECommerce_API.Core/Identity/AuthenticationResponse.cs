@@ -1,4 +1,4 @@
-﻿namespace ECommerce_API.Core.Identity
+﻿namespace ECommerce.Domain.Identity
 {
     public class AuthenticationResponse
     {

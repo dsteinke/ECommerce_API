@@ -1,5 +1,6 @@
-using ECommerce_API.Application;
-using ECommerce_API.Infrastructure;
+using ECommerce.API;
+using ECommerce.Application.Mapping;
+using ECommerce.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 

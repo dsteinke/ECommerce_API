@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ECommerce_API.Application
+namespace ECommerce.Application.DTO.Identity
 {
     public class LoginDTO
     {

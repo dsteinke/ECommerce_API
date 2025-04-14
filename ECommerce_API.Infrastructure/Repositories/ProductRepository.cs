@@ -1,9 +1,9 @@
-﻿using ECommerce_API.Application;
-using ECommerce_API.Application.Interfaces.Repositories;
-using ECommerce_API.Core;
+﻿using ECommerce.Application.DTO.Product;
+using ECommerce.Application.Interfaces.Repositories;
+using ECommerce.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace ECommerce_API.Infrastructure
+namespace ECommerce.Infrastructure.Repositories
 {
     public class ProductRepository : IProductRepository
     {

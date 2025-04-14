@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
-using ECommerce_API.Application.Interfaces.Repositories;
-using ECommerce_API.Application.Interfaces.Services;
-using ECommerce_API.Core;
+using ECommerce.Application.DTO.Cart;
+using ECommerce.Application.Interfaces.Repositories;
+using ECommerce.Application.Interfaces.Services;
+using ECommerce.Domain.Entities;
 
-namespace ECommerce_API.Application
+namespace ECommerce.Application.Services
 {
     public class CartService : ICartService
     {

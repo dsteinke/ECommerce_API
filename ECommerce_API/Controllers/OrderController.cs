@@ -1,10 +1,10 @@
-﻿using ECommerce_API.Application.DTO.Order;
-using ECommerce_API.Application.Interfaces.Services;
-using ECommerce_API.Core.Enums;
+﻿using ECommerce.Application.DTO.Order;
+using ECommerce.Application.Interfaces.Services;
+using ECommerce.Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ECommerce_API.Controllers
+namespace ECommerce.API.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]

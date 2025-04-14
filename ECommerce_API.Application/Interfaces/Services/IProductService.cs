@@ -1,4 +1,6 @@
-﻿namespace ECommerce_API.Application.Interfaces.Services
+﻿using ECommerce.Application.DTO.Product;
+
+namespace ECommerce.Application.Interfaces.Services
 {
     public interface IProductService
     {

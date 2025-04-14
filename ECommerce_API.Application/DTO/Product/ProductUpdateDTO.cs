@@ -1,7 +1,7 @@
-﻿using ECommerce_API.Core;
+﻿using ECommerce.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace ECommerce_API.Application
+namespace ECommerce.Application
 {
     public class ProductUpdateDTO
     {

@@ -1,6 +1,7 @@
-﻿using ECommerce_API.Core;
+﻿using ECommerce.Application.DTO.Cart;
+using ECommerce.Domain.Entities;
 
-namespace ECommerce_API.Application.Interfaces.Services
+namespace ECommerce.Application.Interfaces.Services
 {
     public interface ICartService
     {

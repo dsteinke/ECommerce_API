@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using ECommerce_API.Application.DTO.Order;
-using ECommerce_API.Application.Interfaces.Repositories;
-using ECommerce_API.Application.Interfaces.Services;
-using ECommerce_API.Core;
-using ECommerce_API.Core.Enums;
+using ECommerce.Application.DTO.Order;
+using ECommerce.Application.Interfaces.Repositories;
+using ECommerce.Application.Interfaces.Services;
+using ECommerce.Domain.Entities;
+using ECommerce.Domain.Enums;
 
-namespace ECommerce_API.Application.Services
+namespace ECommerce.Application.Services
 {
     public class OrderService : IOrderService
     {

@@ -1,9 +1,10 @@
-﻿using ECommerce_API.Application.Interfaces.Repositories;
-using ECommerce_API.Core;
-using ECommerce_API.Core.Identity;
+﻿using ECommerce.Application.Interfaces.Repositories;
+using ECommerce.Domain.Entities;
+using ECommerce.Domain.Identity;
+using ECommerce.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
-namespace ECommerce_API.Infrastructure
+namespace ECommerce.Infrastructure.Repositories
 {
     public class CartRepository : ICartRepository
     {

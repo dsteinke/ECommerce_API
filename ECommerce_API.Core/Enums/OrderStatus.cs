@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ECommerce_API.Core.Enums
+namespace ECommerce.Domain.Enums
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum OrderStatus

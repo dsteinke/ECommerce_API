@@ -1,5 +1,5 @@
-﻿using ECommerce_API.Application.Interfaces.Services;
-using ECommerce_API.Core.Identity;
+﻿using ECommerce.Application.Interfaces.Services;
+using ECommerce.Domain.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,7 +9,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace ECommerce_API.Infrastructure.Identity
+namespace ECommerce.Infrastructure.Identity
 {
     public class JwtService : IJwtService
     {

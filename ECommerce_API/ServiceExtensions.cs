@@ -1,10 +1,10 @@
-﻿using ECommerce_API.Application;
-using ECommerce_API.Application.Interfaces.Repositories;
-using ECommerce_API.Application.Interfaces.Services;
-using ECommerce_API.Application.Services;
-using ECommerce_API.Core.Identity;
-using ECommerce_API.Infrastructure.Identity;
-using ECommerce_API.Infrastructure.Repositories;
+﻿using ECommerce.Application.Interfaces.Repositories;
+using ECommerce.Application.Interfaces.Services;
+using ECommerce.Application.Services;
+using ECommerce.Domain.Identity;
+using ECommerce.Infrastructure;
+using ECommerce.Infrastructure.Identity;
+using ECommerce.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -15,7 +15,7 @@ using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using System.Text;
 
-namespace ECommerce_API.Infrastructure
+namespace ECommerce.API
 {
     public static class ServiceExtensions
     {
@@ -80,8 +80,8 @@ namespace ECommerce_API.Infrastructure
 
         public static void ConfigureSerilog(this IHostBuilder hostBuilder)
         {
-            hostBuilder.UseSerilog((HostBuilderContext context, IServiceProvider services,
-            LoggerConfiguration loggerConfiguration) =>
+            hostBuilder.UseSerilog((context, services,
+loggerConfiguration) =>
             {
                 loggerConfiguration
                     .ReadFrom.Configuration(context.Configuration)

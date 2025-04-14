@@ -1,11 +1,13 @@
 using AutoMapper;
-using ECommerce_API.Application;
-using ECommerce_API.Application.Interfaces.Repositories;
-using ECommerce_API.Core;
+using ECommerce.Application;
+using ECommerce.Application.DTO.Product;
+using ECommerce.Application.Interfaces.Repositories;
+using ECommerce.Application.Services;
+using ECommerce.Domain.Entities;
 using FluentAssertions;
 using Moq;
 
-namespace ECommerce_API.Test.Services
+namespace ECommerce.Test.Services
 {
     public class ProductServiceTests
     {

@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
-using ECommerce_API.Application.Interfaces.Repositories;
-using ECommerce_API.Application.Interfaces.Services;
+using ECommerce.Application.DTO.Product;
+using ECommerce.Application.Interfaces.Repositories;
+using ECommerce.Application.Interfaces.Services;
 
-namespace ECommerce_API.Application
+namespace ECommerce.Application.Services
 {
     public class ProductService : IProductService
     {

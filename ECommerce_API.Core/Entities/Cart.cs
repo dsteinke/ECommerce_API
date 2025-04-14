@@ -1,6 +1,6 @@
-﻿using ECommerce_API.Core.Identity;
+﻿using ECommerce.Domain.Identity;
 
-namespace ECommerce_API.Core
+namespace ECommerce.Domain.Entities
 {
     public class Cart
     {

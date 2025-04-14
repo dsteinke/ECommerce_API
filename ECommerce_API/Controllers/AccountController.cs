@@ -1,11 +1,10 @@
-﻿using ECommerce_API.Application;
-using ECommerce_API.Application.DTO.Identity;
-using ECommerce_API.Application.Interfaces.Services;
-using ECommerce_API.Core.Identity;
+﻿using ECommerce.Application.DTO.Identity;
+using ECommerce.Application.Interfaces.Services;
+using ECommerce.Domain.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ECommerce_API.Controllers
+namespace ECommerce.API.Controllers
 {
     [AllowAnonymous]
     [Route("api/v1/[controller]")]

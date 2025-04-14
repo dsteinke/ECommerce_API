@@ -1,8 +1,7 @@
-﻿using ECommerce_API.Application.DTO.Order;
-using ECommerce_API.Core;
-using ECommerce_API.Core.Enums;
+﻿using ECommerce.Application.DTO.Order;
+using ECommerce.Domain.Enums;
 
-namespace ECommerce_API.Application.Interfaces.Services
+namespace ECommerce.Application.Interfaces.Services
 {
     public interface IOrderService
     {

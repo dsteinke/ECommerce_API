@@ -1,9 +1,9 @@
-﻿using ECommerce_API.Application;
-using ECommerce_API.Application.Interfaces.Services;
+﻿using ECommerce.Application.DTO.Cart;
+using ECommerce.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ECommerce_API.Controllers
+namespace ECommerce.API.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]

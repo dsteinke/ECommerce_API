@@ -1,6 +1,7 @@
-﻿using ECommerce_API.Core;
+﻿using ECommerce.Application.DTO.Product;
+using ECommerce.Domain.Entities;
 
-namespace ECommerce_API.Application.Interfaces.Repositories
+namespace ECommerce.Application.Interfaces.Repositories
 {
     public interface IProductRepository
     {
