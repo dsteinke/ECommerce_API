@@ -73,7 +73,7 @@ namespace ECommerce.Test.Services
 
             _productRepositoryMock
                 .Setup(x => x.GetProductById(productId))
-                .ReturnsAsync((Product)null); // Produkt existiert nicht
+                .ReturnsAsync((Product)null);
 
             // Act & Assert
             await Assert.ThrowsAsync<KeyNotFoundException>(() => _productService.DeleteProduct(productId));
