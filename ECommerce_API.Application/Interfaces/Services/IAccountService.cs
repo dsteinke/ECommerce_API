@@ -2,7 +2,7 @@
 using ECommerce_API.Core.Identity;
 using Microsoft.AspNetCore.Identity;
 
-namespace ECommerce_API.Application.Interfaces
+namespace ECommerce_API.Application.Interfaces.Services
 {
     public interface IAccountService
     {

@@ -1,5 +1,5 @@
 ﻿using ECommerce_API.Application;
-using Microsoft.AspNetCore.Authorization;
+using ECommerce_API.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce_API.Controllers

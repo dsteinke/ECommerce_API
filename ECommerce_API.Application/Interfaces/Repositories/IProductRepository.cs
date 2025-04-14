@@ -1,6 +1,6 @@
 ﻿using ECommerce_API.Core;
 
-namespace ECommerce_API.Application
+namespace ECommerce_API.Application.Interfaces.Repositories
 {
     public interface IProductRepository
     {

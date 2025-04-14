@@ -1,7 +1,7 @@
 ﻿using ECommerce_API.Core;
 using ECommerce_API.Core.Identity;
 
-namespace ECommerce_API.Application
+namespace ECommerce_API.Application.Interfaces.Repositories
 {
     public interface ICartRepository
     {

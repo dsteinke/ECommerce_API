@@ -1,7 +1,7 @@
 ﻿using ECommerce_API.Core;
 using ECommerce_API.Core.Enums;
 
-namespace ECommerce_API.Application.Interfaces
+namespace ECommerce_API.Application.Interfaces.Repositories
 {
     public interface IOrderRepository
     {

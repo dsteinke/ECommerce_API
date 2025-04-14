@@ -1,4 +1,5 @@
 ﻿using ECommerce_API.Application;
+using ECommerce_API.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

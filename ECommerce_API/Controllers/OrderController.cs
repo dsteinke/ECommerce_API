@@ -1,5 +1,5 @@
 ﻿using ECommerce_API.Application.DTO.Order;
-using ECommerce_API.Application.Interfaces;
+using ECommerce_API.Application.Interfaces.Services;
 using ECommerce_API.Core.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

@@ -2,7 +2,7 @@
 using ECommerce_API.Core;
 using ECommerce_API.Core.Enums;
 
-namespace ECommerce_API.Application.Interfaces
+namespace ECommerce_API.Application.Interfaces.Services
 {
     public interface IOrderService
     {

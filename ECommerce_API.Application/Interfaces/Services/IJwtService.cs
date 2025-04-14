@@ -1,6 +1,6 @@
 ﻿using ECommerce_API.Core.Identity;
 
-namespace ECommerce_API.Application.Interfaces
+namespace ECommerce_API.Application.Interfaces.Services
 {
     public interface IJwtService
     {

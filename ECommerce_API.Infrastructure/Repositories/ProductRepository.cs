@@ -1,4 +1,5 @@
 ﻿using ECommerce_API.Application;
+using ECommerce_API.Application.Interfaces.Repositories;
 using ECommerce_API.Core;
 using Microsoft.EntityFrameworkCore;
 

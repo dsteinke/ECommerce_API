@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ECommerce_API.Application.Interfaces.Repositories;
+using ECommerce_API.Application.Interfaces.Services;
 
 namespace ECommerce_API.Application
 {

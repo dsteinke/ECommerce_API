@@ -1,5 +1,6 @@
 ﻿using ECommerce_API.Application;
-using ECommerce_API.Application.Interfaces;
+using ECommerce_API.Application.Interfaces.Repositories;
+using ECommerce_API.Application.Interfaces.Services;
 using ECommerce_API.Application.Services;
 using ECommerce_API.Core.Identity;
 using ECommerce_API.Infrastructure.Identity;
