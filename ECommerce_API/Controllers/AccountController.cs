@@ -11,10 +11,10 @@ namespace ECommerce.API.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly IAccountService _accountService;
+        private readonly IAuthService _accountService;
         private readonly IJwtService _jwtService;
 
-        public AccountController(IAccountService accountService, IJwtService jwtService)
+        public AccountController(IAuthService accountService, IJwtService jwtService)
         {
             _accountService = accountService;
             _jwtService = jwtService;

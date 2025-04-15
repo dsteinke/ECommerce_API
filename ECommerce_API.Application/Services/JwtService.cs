@@ -76,7 +76,7 @@ namespace ECommerce.Infrastructure.Identity
                 .FirstOrDefaultAsync(u => u.RefreshToken == refreshToken && u.RefreshTokenExpiryTime > DateTime.UtcNow);
 
             if (user == null)
-                throw new SecurityTokenException("Invalid or expired refresh token.");
+                throw new UnauthorizedAccessException("Invalid or expired refresh token.");
             
             var jwtToken = CreateJwtToken(user);
 
@@ -84,6 +84,7 @@ namespace ECommerce.Infrastructure.Identity
 
             user.RefreshToken = newRefreshToken;
             user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7);
+
             await _userManager.UpdateAsync(user);
 
             return (jwtToken, newRefreshToken);

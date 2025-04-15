@@ -6,14 +6,14 @@ using Microsoft.AspNetCore.Identity;
 
 namespace ECommerce.Application.Services
 {
-    public class AccountService : IAccountService
+    public class AuthService : IAuthService
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IJwtService _jwtService;
         private readonly ICartRepository _cartRepository;
 
-        public AccountService
+        public AuthService
             (SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, IJwtService jwtService, ICartRepository cartRepository)
         {
             _signInManager = signInManager;
