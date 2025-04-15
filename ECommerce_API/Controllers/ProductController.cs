@@ -26,7 +26,7 @@ namespace ECommerce.API.Controllers
         {
             await _productService.AddProduct(productAddDTO);
 
-            return Ok();
+            return Ok(new { message = "Product created successfully" });
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace ECommerce.API.Controllers
         {
             await _productService.UpdateProduct(productUpdateDTO);
 
-            return Ok();
+            return Ok(new { message = "Product updated successfully" });
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace ECommerce.API.Controllers
         {
             await _productService.DeleteProduct(productId);
 
-            return Ok();
+            return Ok(new { message = "Product deleted successfully" });
         }
 
     }
