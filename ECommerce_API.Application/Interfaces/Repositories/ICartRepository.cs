@@ -6,10 +6,11 @@ namespace ECommerce.Application.Interfaces.Repositories
     public interface ICartRepository
     {
         Task<Cart> AddCartToUser(ApplicationUser user);
-        Task AddItemToCart(Guid userId, Guid productId, int quantity);
-        Task RemoveItemFromCart(Guid userId, Guid productId);
-        Task UpdateCartItemQuantity(Guid userId, Guid productId, int quantity);
-        Task<Cart> GetCartByUserId(Guid userId);
+        Task<int> AddItemToCart(CartItem cartItem);
+        Task<int> UpdateCartItem(CartItem item);
+        Task<int> RemoveItemFromCart(CartItem item);
+        Task<int> UpdateCartItemQuantity(Guid userId, Guid productId, int quantity);
+        Task<Cart?> GetCartByUserId(Guid userId);
         Task ClearCart(Guid userId);
     }
 }
