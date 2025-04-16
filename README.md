@@ -52,8 +52,8 @@
 
 ## To do:
 - Complete Unit Tests
-- Migration from SQLite to PostgreSQL
-- Containerization with Docker  
-
+- Containerization with Docker
+- Implementing MediatR
+- Setup CI/CD pipeline
 
 Created by dsteinke
