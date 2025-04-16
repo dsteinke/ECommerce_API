@@ -5,9 +5,9 @@ namespace ECommerce.Application.Interfaces.Services
 {
     public interface IOrderService
     {
-        Task<OrderResponseDTO> CreateOrder(Guid userId);
+        Task<OrderResponseDTO> CreateOrder();
         Task<OrderResponseDTO> GetOrderById(Guid orderId);
-        Task<IEnumerable<OrderResponseDTO>> GetOrdersByUserId(Guid userId);
+        Task<IEnumerable<OrderResponseDTO>> GetOrdersFromUser();
         Task<bool> UpdateOrderStatus(Guid orderId, OrderStatus status);
     }
 }

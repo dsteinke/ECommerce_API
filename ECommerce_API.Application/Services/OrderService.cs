@@ -11,24 +11,26 @@ namespace ECommerce.Application.Services
     {
         private readonly IOrderRepository _orderRepository;
         private readonly ICartRepository _cartRepository;
+        private readonly IUserService _userService;
         private readonly IMapper _mapper;
 
         public OrderService
-            (IOrderRepository orderRepository, ICartRepository cartRepository, IMapper mapper)
+            (IOrderRepository orderRepository, ICartRepository cartRepository, IUserService userService, IMapper mapper)
         {
             _orderRepository = orderRepository;
             _cartRepository = cartRepository;
+            _userService = userService;
             _mapper = mapper;
         }
 
-        public async Task<OrderResponseDTO> CreateOrder(Guid userId)
+        public async Task<OrderResponseDTO> CreateOrder()
         {
+            var userId = _userService.GetUserId_LoggedInUser();
+
             var cart = await _cartRepository.GetCartByUserId(userId);
 
             if (!cart.CartItems.Any())
-            {
                 throw new InvalidOperationException("The cart is empty.");
-            }
 
             var (orderItems, total) = CreateOrderItemsFromCart(cart);
 
@@ -62,8 +64,10 @@ namespace ECommerce.Application.Services
             return response;
         }
 
-        public async Task<IEnumerable<OrderResponseDTO>> GetOrdersByUserId(Guid userId)
+        public async Task<IEnumerable<OrderResponseDTO>> GetOrdersFromUser()
         {
+            var userId = _userService.GetUserId_LoggedInUser();
+
             var orders =  await _orderRepository.GetOrdersByUserId(userId);
 
             var response = _mapper.Map<IEnumerable<OrderResponseDTO>>(orders);
@@ -96,6 +100,7 @@ namespace ECommerce.Application.Services
             }).ToList();
 
             var total = items.Sum(item => item.Quantity * item.Price);
+
             return (items, total);
         }
     }
