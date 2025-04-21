@@ -1,10 +1,10 @@
-﻿using ECommerce_API.Application.DTO.Order;
-using ECommerce_API.Application.Interfaces;
-using ECommerce_API.Core.Enums;
+﻿using ECommerce.Application.DTO.Order;
+using ECommerce.Application.Interfaces.Services;
+using ECommerce.Domain.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ECommerce_API.Controllers
+namespace ECommerce.API.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
@@ -20,13 +20,12 @@ namespace ECommerce_API.Controllers
         /// <summary>
         /// Checkout order
         /// </summary>
-        /// <param name="userId"></param>
         /// <returns></returns>
         [Authorize]
-        [HttpPost("checkout/{userId}")]
-        public async Task<IActionResult> CheckoutOrder([FromRoute] Guid userId)
+        [HttpPost("checkout")]
+        public async Task<IActionResult> CheckoutOrder()
         {
-            await _orderService.CreateOrder(userId);
+            await _orderService.CreateOrder();
 
             return Ok(new { message = "Thank you for your order!" });
         }
@@ -47,16 +46,15 @@ namespace ECommerce_API.Controllers
         }
 
         /// <summary>
-        /// Gets all orders of user
+        /// Gets all orders of logged in user
         /// </summary>
-        /// <param name="userId"></param>
         /// <returns></returns>
         [Authorize]
-        [HttpGet("orders/{userId}")]
+        [HttpGet("orders")]
         [ProducesResponseType(typeof(List<OrderResponseDTO>), 200)]
-        public async Task<IActionResult> GetOrdersByUserId([FromRoute] Guid userId)
+        public async Task<IActionResult> GetOrdersFromUser()
         {
-            var response = await _orderService.GetOrdersByUserId(userId);
+            var response = await _orderService.GetOrdersFromUser();
 
             return Ok(response);
         }

@@ -1,4 +1,4 @@
-﻿namespace ECommerce_API.Application.DTO.Order
+﻿namespace ECommerce.Application.DTO.Order
 {
     public class OrderItemDTO
     {

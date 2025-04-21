@@ -1,10 +1,10 @@
-﻿namespace ECommerce_API.Core
+﻿namespace ECommerce.Domain.Entities
 {
     public class CartItem
     {
         public Guid CartItemId { get; set; }
-        public Guid CartId { get; set; } //Fremdschlüssel auf Cart-Tabelle
-        public Guid ProductId { get; set; } //Fremdschlüssel auf Product-Tabelle
+        public Guid CartId { get; set; }
+        public Guid ProductId { get; set; }
         public int Quantity { get; set; }
 
 

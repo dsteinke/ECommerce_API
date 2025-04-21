@@ -1,10 +1,13 @@
 using AutoMapper;
-using ECommerce_API.Application;
-using ECommerce_API.Core;
+using ECommerce.Application;
+using ECommerce.Application.DTO.Product;
+using ECommerce.Application.Interfaces.Repositories;
+using ECommerce.Application.Services;
+using ECommerce.Domain.Entities;
 using FluentAssertions;
 using Moq;
 
-namespace ECommerce_API.Test.Services
+namespace ECommerce.Test.Services
 {
     public class ProductServiceTests
     {
@@ -27,7 +30,7 @@ namespace ECommerce_API.Test.Services
 
             _productRepositoryMock
                 .Setup(r => r.AddProduct(It.IsAny<Product>()))
-                .ReturnsAsync(product);
+                .ReturnsAsync(1);
 
             _mapperMock
                 .Setup(m => m.Map<ProductResponseDTO>(It.IsAny<Product>()))
@@ -37,7 +40,7 @@ namespace ECommerce_API.Test.Services
             var result = await _productService.AddProduct(productAddDTO);
 
             // Assert
-            result.Should().BeEquivalentTo(responseDTO);
+            result.Should().BeTrue();
         }
 
         [Fact]
@@ -53,7 +56,7 @@ namespace ECommerce_API.Test.Services
 
             _productRepositoryMock
                 .Setup(r => r.DeleteProduct(productId))
-                .ReturnsAsync(true);
+                .ReturnsAsync(1);
 
             // Act
             var result = await _productService.DeleteProduct(productId);
@@ -70,7 +73,7 @@ namespace ECommerce_API.Test.Services
 
             _productRepositoryMock
                 .Setup(x => x.GetProductById(productId))
-                .ReturnsAsync((Product)null); // Produkt existiert nicht
+                .ReturnsAsync((Product)null);
 
             // Act & Assert
             await Assert.ThrowsAsync<KeyNotFoundException>(() => _productService.DeleteProduct(productId));
@@ -205,7 +208,7 @@ namespace ECommerce_API.Test.Services
 
             _productRepositoryMock
                 .Setup(x => x.UpdateProduct(existingProduct))
-                .ReturnsAsync(existingProduct);
+                .ReturnsAsync(1);
 
             _mapperMock
                 .Setup(x => x.Map<ProductResponseDTO>(existingProduct))
@@ -215,7 +218,7 @@ namespace ECommerce_API.Test.Services
             var result = await _productService.UpdateProduct(productUpdateDTO);
 
             // Assert
-            result.Should().BeEquivalentTo(responseDTO);
+            result.Should().BeTrue();
 
         }
 

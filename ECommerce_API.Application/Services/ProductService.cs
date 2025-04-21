@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
+using ECommerce.Application.DTO.Product;
+using ECommerce.Application.Interfaces.Repositories;
+using ECommerce.Application.Interfaces.Services;
 
-namespace ECommerce_API.Application
+namespace ECommerce.Application.Services
 {
     public class ProductService : IProductService
     {
@@ -13,24 +16,20 @@ namespace ECommerce_API.Application
             _mapper = mapper;
         }
 
-        public async Task<ProductResponseDTO> AddProduct(ProductAddDTO productAddDTO)
+        public async Task<bool> AddProduct(ProductAddDTO productAddDTO)
         {
             var product = productAddDTO.ToProduct();
 
-            product.ProductId = Guid.NewGuid();
-
             await _productRepository.AddProduct(product);
 
-            var response = _mapper.Map<ProductResponseDTO>(product);
-
-            return response;
+            return true;
         }
 
         public async Task<bool> DeleteProduct(Guid productId)
         {
-            var personToDelete = await _productRepository.GetProductById(productId);
+            var productToDelete = await _productRepository.GetProductById(productId);
 
-            if (personToDelete == null)
+            if (productToDelete == null)
                 throw new KeyNotFoundException($"Product with Id: {productId} does not exist");
 
             await _productRepository.DeleteProduct(productId);
@@ -69,7 +68,7 @@ namespace ECommerce_API.Application
             return _mapper.Map<List<ProductResponseDTO>>(searchedProducts);
         }
 
-        public async Task<ProductResponseDTO> UpdateProduct(ProductUpdateDTO? productUpdateDTO)
+        public async Task<bool> UpdateProduct(ProductUpdateDTO? productUpdateDTO)
         {
             var productToUpdate = await _productRepository.GetProductById(productUpdateDTO.ProductId);
 
@@ -81,9 +80,7 @@ namespace ECommerce_API.Application
 
             await _productRepository.UpdateProduct(productToUpdate);
 
-            var response = _mapper.Map<ProductResponseDTO>(productToUpdate);
-
-            return response;
+            return true;
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿using ECommerce_API.Core.Enums;
-using ECommerce_API.Core.Identity;
+﻿using ECommerce.Domain.Enums;
+using ECommerce.Domain.Identity;
 
-namespace ECommerce_API.Core
+namespace ECommerce.Domain.Entities
 {
     public class Order
     {

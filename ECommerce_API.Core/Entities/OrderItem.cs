@@ -1,4 +1,4 @@
-﻿namespace ECommerce_API.Core
+﻿namespace ECommerce.Domain.Entities
 {
     public class OrderItem
     {

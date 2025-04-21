@@ -1,6 +1,6 @@
-﻿using ECommerce_API.Core.Identity;
+﻿using ECommerce.Domain.Identity;
 
-namespace ECommerce_API.Application.Interfaces
+namespace ECommerce.Application.Interfaces.Services
 {
     public interface IJwtService
     {

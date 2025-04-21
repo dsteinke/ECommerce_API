@@ -1,5 +1,6 @@
-using ECommerce_API.Application;
-using ECommerce_API.Infrastructure;
+using ECommerce.API;
+using ECommerce.Application.Mapping;
+using ECommerce.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -21,11 +22,9 @@ builder.Services.ConfigureAuthentication(builder.Configuration);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    var xmlFile = $"{AppDomain.CurrentDomain.BaseDirectory}{Path.DirectorySeparatorChar}ECommerce_API.xml";
-    c.IncludeXmlComments(xmlFile);
-});
+
+builder.Services.ConfigureSwagger();
+
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 //Logging(Serilog)
@@ -36,6 +35,8 @@ Log.Logger = new LoggerConfiguration()
 builder.Host.ConfigureSerilog();
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 //Identity Roles
 await app.Services.InitializeRolesAsync();

@@ -1,8 +1,9 @@
-﻿using ECommerce_API.Application;
+﻿using ECommerce.Application.DTO.Cart;
+using ECommerce.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ECommerce_API.Controllers
+namespace ECommerce.API.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
@@ -16,16 +17,15 @@ namespace ECommerce_API.Controllers
         }
 
         /// <summary>
-        /// Gets the cart of user by UserId
+        /// Gets the cart of logged in User
         /// </summary>
-        /// <param name="userId"></param>
         /// <returns></returns>
         [Authorize]
-        [HttpGet("{userId}")]
+        [HttpGet]
         [ProducesResponseType(typeof(CartResponseDTO), 200)]
-        public async Task<IActionResult> GetCartByUserId([FromRoute] Guid userId)
+        public async Task<IActionResult> GetCartFromUser()
         {
-            var cart = await _cartService.GetCartByUserId(userId);
+            var cart = await _cartService.GetCartFromUser();
 
             return Ok(cart);
         }
@@ -40,42 +40,39 @@ namespace ECommerce_API.Controllers
         public async Task<IActionResult> AddItemToCart([FromBody] CartItemAddDTO cartAddDTO)
         {
             await _cartService
-                .AddItemToCart(cartAddDTO.UserId, cartAddDTO.ProductId, cartAddDTO.Quantity);
+                .AddItemToCart(cartAddDTO.ProductId, cartAddDTO.Quantity);
 
-            return Ok();
-        }
+            return Ok(new { message = "Item successfully added to the cart" });
+        } 
 
         /// <summary>
         /// Changes the quantity of item in cart
         /// </summary>
-        /// <param name="userId"></param>
         /// <param name="productId"></param>
         /// <param name="quantity"></param>
         /// <returns></returns>
         [Authorize]
         [HttpPut("change-quantity")]
         public async Task<IActionResult> ChangeQuantityOfItem
-            ([FromQuery] Guid userId, [FromQuery] Guid productId, [FromQuery] int quantity)
+            ([FromQuery] Guid productId, [FromQuery] int quantity)
         {
-            await _cartService.UpdateCartItemQuantity(userId, productId, quantity);
+            await _cartService.UpdateCartItemQuantity(productId, quantity);
 
-            return Ok();
+            return Ok(new { message = "Quantity of item changed" });
         }
 
         /// <summary>
         /// Removes item from cart
         /// </summary>
-        /// <param name="userId"></param>
         /// <param name="productId"></param>
         /// <returns></returns>
         [Authorize]
-        [HttpDelete("remove-item")]
-        public async Task<IActionResult> RemoveItemFromCart
-            ([FromQuery] Guid userId, [FromQuery] Guid productId)
+        [HttpDelete("remove-item/{productId}")]
+        public async Task<IActionResult> RemoveItemFromCart([FromRoute] Guid productId)
         {
-            await _cartService.RemoveItemFromCart(userId, productId);
+            await _cartService.RemoveItemFromCart(productId);
 
-            return Ok();
+            return Ok(new { message = "Item removed successfully" });
         }
     }
 }

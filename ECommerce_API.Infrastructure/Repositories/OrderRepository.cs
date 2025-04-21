@@ -1,9 +1,9 @@
-﻿using ECommerce_API.Application.Interfaces;
-using ECommerce_API.Core;
-using ECommerce_API.Core.Enums;
+﻿using ECommerce.Application.Interfaces.Repositories;
+using ECommerce.Domain.Entities;
+using ECommerce.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 
-namespace ECommerce_API.Infrastructure.Repositories
+namespace ECommerce.Infrastructure.Repositories
 {
     public class OrderRepository : IOrderRepository
     {

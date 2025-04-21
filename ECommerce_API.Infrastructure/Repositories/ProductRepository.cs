@@ -1,8 +1,9 @@
-﻿using ECommerce_API.Application;
-using ECommerce_API.Core;
+﻿using ECommerce.Application.DTO.Product;
+using ECommerce.Application.Interfaces.Repositories;
+using ECommerce.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace ECommerce_API.Infrastructure
+namespace ECommerce.Infrastructure.Repositories
 {
     public class ProductRepository : IProductRepository
     {
@@ -13,12 +14,11 @@ namespace ECommerce_API.Infrastructure
             _context = context;
         }
 
-        public async Task<Product> AddProduct(Product product)
+        public async Task<int> AddProduct(Product product)
         {
             _context.Products.Add(product);
-            await _context.SaveChangesAsync();
 
-            return product;
+            return await _context.SaveChangesAsync();
         }
 
         public async Task<List<Product>> GetAllProducts()
@@ -59,34 +59,30 @@ namespace ECommerce_API.Infrastructure
             return await query.ToListAsync();
         }
 
-        public async Task<Product> UpdateProduct(Product product)
+        public async Task<int> UpdateProduct(Product product)
         {
             var productToUpdate = await _context.Products
                 .FirstOrDefaultAsync(x => x.ProductId == product.ProductId);
 
             if (productToUpdate == null)
-                return product;
+                return 0;
 
             productToUpdate.Name = product.Name;
             productToUpdate.Description = product.Description;
             productToUpdate.Price = product.Price;
             productToUpdate.Category = product.Category;
 
-            await _context.SaveChangesAsync();
-
-            return productToUpdate;
+            return await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> DeleteProduct(Guid productId)
+        public async Task<int> DeleteProduct(Guid productId)
         {
             var productToDelete =
                 await _context.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
 
             _context.Products.Remove(productToDelete);
 
-            await _context.SaveChangesAsync();
-
-            return true;
+            return await _context.SaveChangesAsync();
         }
     }
 }

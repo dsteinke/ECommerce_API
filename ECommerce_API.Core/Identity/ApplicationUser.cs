@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using ECommerce.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 
-namespace ECommerce_API.Core.Identity
+namespace ECommerce.Domain.Identity
 {
     public class ApplicationUser : IdentityUser<Guid>
     {

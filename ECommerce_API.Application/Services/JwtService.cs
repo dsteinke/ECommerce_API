@@ -1,5 +1,5 @@
-﻿using ECommerce_API.Application.Interfaces;
-using ECommerce_API.Core.Identity;
+﻿using ECommerce.Application.Interfaces.Services;
+using ECommerce.Domain.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,7 +9,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace ECommerce_API.Infrastructure.Identity
+namespace ECommerce.Infrastructure.Identity
 {
     public class JwtService : IJwtService
     {
@@ -76,7 +76,7 @@ namespace ECommerce_API.Infrastructure.Identity
                 .FirstOrDefaultAsync(u => u.RefreshToken == refreshToken && u.RefreshTokenExpiryTime > DateTime.UtcNow);
 
             if (user == null)
-                throw new SecurityTokenException("Invalid or expired refresh token.");
+                throw new UnauthorizedAccessException("Invalid or expired refresh token.");
             
             var jwtToken = CreateJwtToken(user);
 
@@ -84,6 +84,7 @@ namespace ECommerce_API.Infrastructure.Identity
 
             user.RefreshToken = newRefreshToken;
             user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7);
+
             await _userManager.UpdateAsync(user);
 
             return (jwtToken, newRefreshToken);

@@ -1,7 +1,7 @@
-﻿using ECommerce_API.Core.Identity;
+﻿using ECommerce.Domain.Identity;
 using Microsoft.AspNetCore.Identity;
 
-namespace ECommerce_API.Infrastructure.Identity
+namespace ECommerce.Infrastructure.Identity
 {
     public class IdentitySeeder
     {

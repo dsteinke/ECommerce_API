@@ -1,8 +1,9 @@
-﻿using ECommerce_API.Application;
-using Microsoft.AspNetCore.Authorization;
+﻿using ECommerce.Application;
+using ECommerce.Application.DTO.Product;
+using ECommerce.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ECommerce_API.Controllers
+namespace ECommerce.API.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
@@ -25,7 +26,7 @@ namespace ECommerce_API.Controllers
         {
             await _productService.AddProduct(productAddDTO);
 
-            return Ok();
+            return Ok(new { message = "Product created successfully" });
         }
 
         /// <summary>
@@ -79,7 +80,7 @@ namespace ECommerce_API.Controllers
         {
             await _productService.UpdateProduct(productUpdateDTO);
 
-            return Ok();
+            return Ok(new { message = "Product updated successfully" });
         }
 
         /// <summary>
@@ -92,7 +93,7 @@ namespace ECommerce_API.Controllers
         {
             await _productService.DeleteProduct(productId);
 
-            return Ok();
+            return Ok(new { message = "Product deleted successfully" });
         }
 
     }

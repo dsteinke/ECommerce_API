@@ -1,10 +1,9 @@
-﻿using ECommerce_API.Core;
-using ECommerce_API.Core.Enums;
-using ECommerce_API.Core.Identity;
+﻿using ECommerce.Domain.Entities;
+using ECommerce.Domain.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace ECommerce_API.Infrastructure
+namespace ECommerce.Infrastructure
 {
     public class ECommerceDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
     {

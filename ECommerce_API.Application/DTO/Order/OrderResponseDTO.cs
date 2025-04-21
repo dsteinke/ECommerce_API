@@ -1,6 +1,4 @@
-﻿using ECommerce_API.Core.Enums;
-
-namespace ECommerce_API.Application.DTO.Order
+﻿namespace ECommerce.Application.DTO.Order
 {
     public class OrderResponseDTO
     {
