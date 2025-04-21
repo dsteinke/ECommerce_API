@@ -19,7 +19,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"name\": \"Планшет\",\r\n        \"description\": \"Мощный планшет с 128 ГБ памяти\",\r\n        \"price\": 399.99,\r\n        \"category\": \"Электроника\"\r\n    }",
+							"raw": "    {\r\n        \"name\": \"Notebook\",\r\n        \"description\": \"Thin ultra book with i9 processor and 32 Gb ram\",\r\n        \"price\": 1299.99,\r\n        \"category\": \"Electronics\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -81,7 +81,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7174/api/v1/product/3dddb0c0-401b-409c-9a4c-deb3bf1965a7",
+							"raw": "https://localhost:7174/api/v1/product/21b4ee79-a87a-4e51-b15c-d574100d1b66",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -91,7 +91,7 @@
 								"api",
 								"v1",
 								"product",
-								"3dddb0c0-401b-409c-9a4c-deb3bf1965a7"
+								"21b4ee79-a87a-4e51-b15c-d574100d1b66"
 							]
 						}
 					},
@@ -103,7 +103,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7174/api/v1/product/search?name=Планшет",
+							"raw": "https://localhost:7174/api/v1/product/search?description=Powerful&category=Electronics",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -123,14 +123,14 @@
 								},
 								{
 									"key": "name",
-									"value": "Планшет",
-									"description": "Case sensitive in SQLite"
+									"value": "Smartphone",
+									"description": "Case sensitive in SQLite",
+									"disabled": true
 								},
 								{
 									"key": "description",
-									"value": "Мощный смартфон с 128 ГБ памяти",
-									"description": "Case sensitive in SQLite",
-									"disabled": true
+									"value": "Powerful",
+									"description": "Case sensitive in SQLite"
 								},
 								{
 									"key": "price",
@@ -139,9 +139,8 @@
 								},
 								{
 									"key": "category",
-									"value": "Электроникa",
-									"description": "Case sensitive in SQLite",
-									"disabled": true
+									"value": "Electronics",
+									"description": "Case sensitive in SQLite"
 								}
 							]
 						}
@@ -186,7 +185,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7174/api/v1/product/delete/766d7947-9bd3-434d-8573-8852ab86d67a",
+							"raw": "https://localhost:7174/api/v1/product/delete/cd9f5e07-7811-4a0d-b0eb-7716e84b55d4",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -197,7 +196,7 @@
 								"v1",
 								"product",
 								"delete",
-								"766d7947-9bd3-434d-8573-8852ab86d67a"
+								"cd9f5e07-7811-4a0d-b0eb-7716e84b55d4"
 							]
 						}
 					},
@@ -209,50 +208,6 @@
 			"name": "Cart",
 			"item": [
 				{
-					"name": "GetCartByUserId",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiI0NmVhNWQyNC01YTU3LTRkZGItOTQ2My1jOGZiZTc4YjUxN2MiLCJpYXQiOjE3Mzk1Mjk4OTMsIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTczOTUyOTk1MywiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.uFBxNU-S3M9ZnHCbzSyb5UqPZ9j8AjzyX-WAVcVDe0U",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "    {\r\n        \"userId\": \"\",\r\n        \"productId\": \"\",\r\n        \"quantity\": \"\"\r\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://localhost:7174/api/v1/cart/E3BBCFD7-3A5F-4D37-90E5-71A74D37DCF3",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "7174",
-							"path": [
-								"api",
-								"v1",
-								"cart",
-								"E3BBCFD7-3A5F-4D37-90E5-71A74D37DCF3"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "AddItemToCart",
 					"request": {
 						"auth": {
@@ -260,7 +215,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiI0NmVhNWQyNC01YTU3LTRkZGItOTQ2My1jOGZiZTc4YjUxN2MiLCJpYXQiOjE3Mzk1Mjk4OTMsIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTczOTUyOTk1MywiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.uFBxNU-S3M9ZnHCbzSyb5UqPZ9j8AjzyX-WAVcVDe0U",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiJlODg1MTc3ZS1jMmYwLTRjMGQtYmY3YS0xMmUwMzRlYWJkNzMiLCJpYXQiOjE3NDQ4MTI5NjcsIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTc0NDgxMzAyNiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.gwZpykcbNzI3x45xjZ1JXgLyzYxskNvs3ljmMwBCxuQ",
 									"type": "string"
 								}
 							]
@@ -269,7 +224,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"userId\": \"e3bbcfd7-3a5f-4d37-90e5-71a74d37dcf3\",\r\n        \"productId\": \"3dddb0c0-401b-409c-9a4c-deb3bf1965a7\",\r\n        \"quantity\": \"2\"\r\n    }",
+							"raw": "    {\r\n        \"productId\": \"a446a41b-461a-473d-81ed-ae2907d582e3\",\r\n        \"quantity\": \"3\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -294,23 +249,26 @@
 					"response": []
 				},
 				{
-					"name": "ChangeQuantityOfItem",
+					"name": "GetCartFromUser",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiI5NGQ4NmU3Mi0zYjU2LTRkNGItYmVmYi1mZDYyOTYzZjJhOTciLCJpYXQiOjE3Mzg2NzExODksIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTczODY3MTI0OSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.vU8ohkKtNqFtHN0zgUjUkCDxhGK_JUsqxCQr6xO_M4s",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiIwM2ExZjA2ZC1iMWM4LTRjMzktOWUyOS04MDFlM2I5NWM4MmMiLCJpYXQiOjE3NDQ4MjY0MDAsIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTc0NDgyNjQ2MCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.-f1AJ6dGL99zg2AJuMjNpZinA6BdIMopqGRHxVUSLAw",
 									"type": "string"
 								}
 							]
 						},
-						"method": "PUT",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"userId\": \"3f673ee1-96b9-49a7-bcf1-5b7787947eb4\",\r\n        \"productId\": \"cd9f5e07-7811-4a0d-b0eb-7716e84b55d4\",\r\n        \"quantity\": \"2\"\r\n    }",
+							"raw": "    {\r\n        \"userId\": \"\",\r\n        \"productId\": \"\",\r\n        \"quantity\": \"\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -318,7 +276,39 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7174/api/v1/cart/change-quantity?userId=1b565ffa-8ee5-4794-b316-f8e268400065&productId=3dddb0c0-401b-409c-9a4c-deb3bf1965a7&quantity=3",
+							"raw": "https://localhost:7174/api/v1/cart/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7174",
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ChangeQuantityOfItem",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiJlODg1MTc3ZS1jMmYwLTRjMGQtYmY3YS0xMmUwMzRlYWJkNzMiLCJpYXQiOjE3NDQ4MTI5NjcsIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTc0NDgxMzAyNiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.gwZpykcbNzI3x45xjZ1JXgLyzYxskNvs3ljmMwBCxuQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7174/api/v1/cart/change-quantity?productId=a446a41b-461a-473d-81ed-ae2907d582e3&quantity=1",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -332,16 +322,12 @@
 							],
 							"query": [
 								{
-									"key": "userId",
-									"value": "1b565ffa-8ee5-4794-b316-f8e268400065"
-								},
-								{
 									"key": "productId",
-									"value": "3dddb0c0-401b-409c-9a4c-deb3bf1965a7"
+									"value": "a446a41b-461a-473d-81ed-ae2907d582e3"
 								},
 								{
 									"key": "quantity",
-									"value": "3"
+									"value": "1"
 								}
 							]
 						}
@@ -356,24 +342,15 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiI5NGQ4NmU3Mi0zYjU2LTRkNGItYmVmYi1mZDYyOTYzZjJhOTciLCJpYXQiOjE3Mzg2NzExODksIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTczODY3MTI0OSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.vU8ohkKtNqFtHN0zgUjUkCDxhGK_JUsqxCQr6xO_M4s",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiI5NGE4YzYxNC0xNjBlLTQ3MDQtOWE3YS05Y2U1Zjg0MzQyODciLCJpYXQiOjE3NDQ4MTI3OTYsIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTc0NDgxMjg1NiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.XoMixmNhsPBq3Vz_jPWhwU5Ci0eVG5G_bPW5MWUlfNQ",
 									"type": "string"
 								}
 							]
 						},
 						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "    {\r\n        \"userId\": \"3f673ee1-96b9-49a7-bcf1-5b7787947eb4\",\r\n        \"productId\": \"cd9f5e07-7811-4a0d-b0eb-7716e84b55d4\",\r\n        \"quantity\": \"2\"\r\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "https://localhost:7174/api/v1/cart/remove-item?userId=3f673ee1-96b9-49a7-bcf1-5b7787947eb4&productId=cd9f5e07-7811-4a0d-b0eb-7716e84b55d4",
+							"raw": "https://localhost:7174/api/v1/cart/remove-item/A446A41B-461A-473D-81ED-AE2907D582E3",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -383,17 +360,8 @@
 								"api",
 								"v1",
 								"cart",
-								"remove-item"
-							],
-							"query": [
-								{
-									"key": "userId",
-									"value": "3f673ee1-96b9-49a7-bcf1-5b7787947eb4"
-								},
-								{
-									"key": "productId",
-									"value": "cd9f5e07-7811-4a0d-b0eb-7716e84b55d4"
-								}
+								"remove-item",
+								"A446A41B-461A-473D-81ED-AE2907D582E3"
 							]
 						}
 					},
@@ -539,10 +507,20 @@
 				{
 					"name": "CheckoutOrder",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiJkMDhmNTA2NS00NGJkLTRmMjItOGIxOC1iZGEwZWMzOTkyNDMiLCJpYXQiOjE3NDQ4MzMyNzIsIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTc0NDgzMzMzMiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.klBYPK6-Hs-uGa4PJMZ53CLmAo2rYLd4rmYy55GdXnM",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7174/api/v1/order/checkout/e3bbcfd7-3a5f-4d37-90e5-71a74d37dcf3",
+							"raw": "https://localhost:7174/api/v1/order/checkout/",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -553,7 +531,7 @@
 								"v1",
 								"order",
 								"checkout",
-								"e3bbcfd7-3a5f-4d37-90e5-71a74d37dcf3"
+								""
 							]
 						}
 					},
@@ -567,7 +545,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiIwNzBkZDUyMS01YzRmLTRlODAtOWM4Yi02MDM0ZjU2ZjUwMDkiLCJpYXQiOjE3Mzk1MzcxMTksIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTczOTUzNzE3OSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.k3IEe92CiMvW0Z3axkNf5DqhxE7Jefax85ngmpFzbbI",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiIwM2ExZjA2ZC1iMWM4LTRjMzktOWUyOS04MDFlM2I5NWM4MmMiLCJpYXQiOjE3NDQ4MjY0MDAsIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTc0NDgyNjQ2MCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.-f1AJ6dGL99zg2AJuMjNpZinA6BdIMopqGRHxVUSLAw",
 									"type": "string"
 								}
 							]
@@ -575,7 +553,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7174/api/v1/order/aad956dc-a997-4b0c-b362-00148fc374b7",
+							"raw": "https://localhost:7174/api/v1/order/4b635f40-8d76-4dd4-9566-759b07c27c02",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -585,21 +563,21 @@
 								"api",
 								"v1",
 								"order",
-								"aad956dc-a997-4b0c-b362-00148fc374b7"
+								"4b635f40-8d76-4dd4-9566-759b07c27c02"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "GetOrdersByUserId",
+					"name": "GetOrdersFromUser",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiIwNzdiN2YzZC1jNmMzLTQ2OGUtOTczNy0zNjc4NWI3NDIxYzAiLCJpYXQiOjE3Mzk1MzY2MzIsIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTczOTUzNjY5MiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.x4A-HWJK7KsH6yXudn9zDiGfE-HLYAMHOo9eGpsfHds",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlM2JiY2ZkNy0zYTVmLTRkMzctOTBlNS03MWE3NGQzN2RjZjMiLCJqdGkiOiJkMDhmNTA2NS00NGJkLTRmMjItOGIxOC1iZGEwZWMzOTkyNDMiLCJpYXQiOjE3NDQ4MzMyNzIsIm5hbWVpZCI6InNlcmdleUBleGFtcGxlLmNvbSIsImV4cCI6MTc0NDgzMzMzMiwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE3NCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcxNzQifQ.klBYPK6-Hs-uGa4PJMZ53CLmAo2rYLd4rmYy55GdXnM",
 									"type": "string"
 								}
 							]
@@ -607,7 +585,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7174/api/v1/order/orders/E3BBCFD7-3A5F-4D37-90E5-71A74D37DCF3",
+							"raw": "https://localhost:7174/api/v1/order/orders/",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -618,7 +596,7 @@
 								"v1",
 								"order",
 								"orders",
-								"E3BBCFD7-3A5F-4D37-90E5-71A74D37DCF3"
+								""
 							]
 						}
 					},
