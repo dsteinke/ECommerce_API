@@ -30,7 +30,7 @@ namespace ECommerce.Test.Services
 
             _productRepositoryMock
                 .Setup(r => r.AddProduct(It.IsAny<Product>()))
-                .ReturnsAsync(product);
+                .ReturnsAsync(1);
 
             _mapperMock
                 .Setup(m => m.Map<ProductResponseDTO>(It.IsAny<Product>()))
@@ -40,7 +40,7 @@ namespace ECommerce.Test.Services
             var result = await _productService.AddProduct(productAddDTO);
 
             // Assert
-            result.Should().BeEquivalentTo(responseDTO);
+            result.Should().BeTrue();
         }
 
         [Fact]
@@ -56,7 +56,7 @@ namespace ECommerce.Test.Services
 
             _productRepositoryMock
                 .Setup(r => r.DeleteProduct(productId))
-                .ReturnsAsync(true);
+                .ReturnsAsync(1);
 
             // Act
             var result = await _productService.DeleteProduct(productId);
@@ -208,7 +208,7 @@ namespace ECommerce.Test.Services
 
             _productRepositoryMock
                 .Setup(x => x.UpdateProduct(existingProduct))
-                .ReturnsAsync(existingProduct);
+                .ReturnsAsync(1);
 
             _mapperMock
                 .Setup(x => x.Map<ProductResponseDTO>(existingProduct))
@@ -218,7 +218,7 @@ namespace ECommerce.Test.Services
             var result = await _productService.UpdateProduct(productUpdateDTO);
 
             // Assert
-            result.Should().BeEquivalentTo(responseDTO);
+            result.Should().BeTrue();
 
         }
 
