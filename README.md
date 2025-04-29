@@ -9,6 +9,7 @@
 - **Swagger**
 - **AutoMapper**
 - **xUnit(with Moq and FluentAssertions)**
+- **Containerization with Docker**
 
 ## Architecture
 - Repository Pattern with Clean Architecture
@@ -52,7 +53,6 @@
 
 ## To do:
 - Complete Unit Tests
-- Containerization with Docker
 - Implementing MediatR
 - Setup CI/CD pipeline
 
