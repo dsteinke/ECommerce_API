@@ -21,7 +21,6 @@
 - Registration and Login with Microsoft Identity
 - JWT Authentication with Access Token
 - Refresh Token stored in Http-only Cookie
-- Logout Mechanism
 
 ### **Product Management**
 - CRUD Operations for Products
