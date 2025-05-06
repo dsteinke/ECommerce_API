@@ -7,7 +7,7 @@ namespace ECommerce.Infrastructure
 {
     public class ECommerceDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
     {
-        public ECommerceDbContext(DbContextOptions options) : base(options)
+        public ECommerceDbContext(DbContextOptions<ECommerceDbContext> options) : base(options)
         {
         }
 
@@ -51,7 +51,7 @@ namespace ECommerce.Infrastructure
 
             modelBuilder.Entity<OrderItem>()
                 .Property(o => o.ProductName)
-                .HasColumnType("TEXT COLLATE NOCASE");
+                .HasColumnType("TEXT");
 
             modelBuilder.Entity<OrderItem>()
                 .HasOne(oi => oi.Order)
