@@ -1,9 +1,9 @@
 # ECommerce_API
 
 ## Technologies
-- **.NET 8**
-- **Entity Framework Core**
-- **SQLite**
+- **.NET 8 (ASP.NET Core Web API)**
+- **Entity Framework Core (Code-First)**
+- **PostgreSQL (earlier SQLite)**
 - **Microsoft Identity**
 - **JWT Authentication**
 - **Swagger**
@@ -14,6 +14,9 @@
 ## Architecture
 - Repository Pattern with Clean Architecture
 - Dependency Injection
+
+## Deployment
+API, Database and nginx reverse proxy are running in docker containers on a private Raspberry PI 5 (running on an Ubuntu Server) which i set up.
 
 ## Features
 
@@ -43,9 +46,10 @@
 "email": "michael@example.com",  
 "password": "test.123"  
 
-**UserId: E3BBCFD7-3A5F-4D37-90E5-71A74D37DCF3**  
-"email": "sergey@example.com",  
-"password": "test.123"  
+## Setup
+git clone https://github.com/dsteinke/ECommerce_API.git
+cd ECommerce_API
+docker compose up --build
 
 ## Notes
 - Postman Collection with Endpoints in Solution (under ECommerce_API)
