@@ -47,9 +47,9 @@ API, Database and nginx reverse proxy are running in docker containers on a priv
 "password": "test.123"  
 
 ## Setup
-git clone https://github.com/dsteinke/ECommerce_API.git
-cd ECommerce_API
-docker compose up --build
+git clone https://github.com/dsteinke/ECommerce_API.git  
+cd ECommerce_API  
+docker compose up --build  
 
 ## Notes
 - Postman Collection with Endpoints in Solution (under ECommerce_API)
