@@ -39,13 +39,19 @@ var app = builder.Build();
 app.UseMiddleware<ExceptionMiddleware>();
 
 //Identity Roles
-await app.Services.InitializeRolesAsync();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.EnvironmentName == "Docker")
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<ECommerceDbContext>();
+
+    await app.Services.InitializeRolesAsync();
 }
 
 app.UseHttpsRedirection();

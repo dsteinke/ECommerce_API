@@ -8,7 +8,7 @@ namespace ECommerce.Domain.Entities
         public Guid OrderId { get; set; } = Guid.NewGuid();
         public Guid UserId { get; set; }
         public decimal TotalAmount {  get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public OrderStatus Status { get; set; } = OrderStatus.Pending;
 
         //Navigation Properties
