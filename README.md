@@ -1,4 +1,4 @@
-# ECommerce_API
+# ECommerce API
 
 ## Technologies
 - **.NET 8 (ASP.NET Core Web API)**
