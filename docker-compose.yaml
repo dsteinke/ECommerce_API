@@ -1,0 +1,56 @@
+networks:
+  ecommerce-network:
+    driver: bridge
+
+services:
+  ecommerce-api:
+    build: .
+    container_name: ecommerce-api-docker
+    ports:
+      - "3000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD};Database=${POSTGRES_DB}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - ecommerce-network
+
+  db:
+    image: postgres
+    container_name: ecommerce-postgres
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./ecommerce-db.sql:/docker-entrypoint-initdb.d/ecommerce-db.sql        
+    ports:
+      - "5123:5432"
+    restart: always
+    networks:
+      - ecommerce-network
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+  nginx:
+    image: nginx:latest
+    container_name: ecommerce-nginx
+    ports: 
+      - "3001:3001"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/certs:/etc/nginx/certs:ro
+    depends_on:
+      - ecommerce-api
+    networks:
+      - ecommerce-network
+
+volumes:
+    pgdata:
