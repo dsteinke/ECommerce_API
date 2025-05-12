@@ -49,6 +49,8 @@ git clone https://github.com/dsteinke/ECommerce_API.git
 cd ECommerce_API  
 docker compose up --build  
 
+Swagger: https://localhost:3001/swagger/index.html
+
 ## Notes
 - Postman Collection with Endpoints in Solution (under ECommerce_API)
 
