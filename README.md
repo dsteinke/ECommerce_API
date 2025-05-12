@@ -41,8 +41,6 @@ API, Database and nginx reverse proxy are running in docker containers on a priv
 
 ## Authentication
 ### Test user
-
-**UserId: 1B565FFA-8EE5-4794-B316-F8E268400065**  
 "email": "michael@example.com",  
 "password": "test.123"  
 
