@@ -55,8 +55,9 @@ Swagger: https://localhost:3001/swagger/index.html
 - Postman Collection with Endpoints in Solution (under ECommerce_API)
 
 ## To do:
+- Image upload function
 - Complete Unit Tests
-- Implementing MediatR
 - Setup CI/CD pipeline
+- Implementing MediatR
 
 Created by dsteinke
