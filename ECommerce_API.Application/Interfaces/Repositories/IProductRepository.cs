@@ -1,5 +1,6 @@
 ﻿using ECommerce.Application.DTO.Product;
 using ECommerce.Domain.Entities;
+using Microsoft.AspNetCore.Http;
 
 namespace ECommerce.Application.Interfaces.Repositories
 {
@@ -8,9 +9,11 @@ namespace ECommerce.Application.Interfaces.Repositories
         Task<int> AddProduct(Product product);
         Task<int> UpdateProduct(Product product);
         Task<List<Product>> GetAllProducts();
-        Task<Product?>GetProductById(Guid productId);
+        Task<Product?> GetProductById(Guid productId);
         Task<List<Product>> SearchProduct(ProductRequestDTO productDTO);
-        Task<int>DeleteProduct(Guid productId);
+        Task<int> DeleteProduct(Guid productId);
+        Task<int> AddProductImages(Product product);
+        Task<int> RemoveProductImages(Product product);
 
     }
 }

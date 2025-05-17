@@ -22,7 +22,7 @@ namespace ECommerce.API.Controllers
         /// <param name="productAddDTO"></param>
         /// <returns></returns>
         [HttpPost("create")]
-        public async Task<IActionResult> CreateProduct([FromBody] ProductAddDTO productAddDTO)
+        public async Task<IActionResult> CreateProduct([FromForm] ProductAddDTO productAddDTO)
         {
             await _productService.AddProduct(productAddDTO);
 
@@ -95,6 +95,5 @@ namespace ECommerce.API.Controllers
 
             return Ok(new { message = "Product deleted successfully" });
         }
-
     }
 }

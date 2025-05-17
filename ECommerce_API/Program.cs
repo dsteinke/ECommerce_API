@@ -2,6 +2,7 @@ using ECommerce.API;
 using ECommerce.Application.Mapping;
 using ECommerce.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,9 +37,15 @@ builder.Host.ConfigureSerilog();
 
 var app = builder.Build();
 
-app.UseMiddleware<ExceptionMiddleware>();
+var imagePath = builder.Configuration["ImageUpload:ImagePath"];
 
-//Identity Roles
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(imagePath),
+    RequestPath = "/images"
+});
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment() || app.Environment.EnvironmentName == "Docker")
