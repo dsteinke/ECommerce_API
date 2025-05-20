@@ -27,6 +27,7 @@ API, Database and nginx reverse proxy are running in docker containers on a priv
 
 ### **Product Management**
 - CRUD Operations for Products
+- Image upload for Products
 
 ### **Cart Management**
 - Add, Remove, and Edit Products in the Cart
