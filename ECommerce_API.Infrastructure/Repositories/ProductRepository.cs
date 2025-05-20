@@ -1,7 +1,6 @@
 ﻿using ECommerce.Application.DTO.Product;
 using ECommerce.Application.Interfaces.Repositories;
 using ECommerce.Domain.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Infrastructure.Repositories
@@ -24,7 +23,9 @@ namespace ECommerce.Infrastructure.Repositories
 
         public async Task<List<Product>> GetAllProducts()
         {
-            return await _context.Products.ToListAsync();
+            return await _context.Products
+                .Include(x => x.ProductImages)
+                .ToListAsync();
         }
 
         public async Task<Product?> GetProductById(Guid productId)

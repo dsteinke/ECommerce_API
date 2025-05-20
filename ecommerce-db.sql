@@ -216,6 +216,19 @@ CREATE TABLE public."Orders" (
 ALTER TABLE public."Orders" OWNER TO postgres;
 
 --
+-- Name: ProductImages; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."ProductImages" (
+    "ProductImageId" uuid NOT NULL,
+    "ProductId" uuid NOT NULL,
+    "ImageUrl" text
+);
+
+
+ALTER TABLE public."ProductImages" OWNER TO postgres;
+
+--
 -- Name: Products; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -340,6 +353,14 @@ cc7b0413-70e4-40b7-af96-b95f84947983	0196c0c4-1bcb-74ac-bf1b-996ace4d8aaa	2659.9
 
 
 --
+-- Data for Name: ProductImages; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."ProductImages" ("ProductImageId", "ProductId", "ImageUrl") FROM stdin;
+\.
+
+
+--
 -- Data for Name: Products; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -349,6 +370,7 @@ f27285bc-16fc-4b85-a1a7-fa0e3aff8de0	Notebook	Thin ultra book with i9 processor 
 d7f61420-e816-433d-8ee4-76ca22604b27	Smartphone	Powerful Smartphone with 128 Gb storage	699.99	Electronics
 651e2a98-a0ba-4d5a-a871-aef1c7c1cbd1	Wireless headphones	High quality noise cancelling headphonese	29.99	Electronics
 73b0f499-9006-4c2b-b922-3d8084106598	Tablet	Powerful Tablet with 128 Gb storage	499.99	Electronics
+507feaad-446d-4ae9-8a13-5d7c24944f27	Test Product with picture	This is a test for picture upload	49.99	Electronics
 \.
 
 
@@ -358,6 +380,7 @@ d7f61420-e816-433d-8ee4-76ca22604b27	Smartphone	Powerful Smartphone with 128 Gb 
 
 COPY public."__EFMigrationsHistory" ("MigrationId", "ProductVersion") FROM stdin;
 20250506140956_InitialPostgres	9.0.4
+20250514195152_AddProductImageTable	9.0.4
 \.
 
 
@@ -464,6 +487,14 @@ ALTER TABLE ONLY public."Orders"
 
 
 --
+-- Name: ProductImages PK_ProductImages; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."ProductImages"
+    ADD CONSTRAINT "PK_ProductImages" PRIMARY KEY ("ProductImageId");
+
+
+--
 -- Name: Products PK_Products; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -547,6 +578,13 @@ CREATE INDEX "IX_OrderItems_OrderId" ON public."OrderItems" USING btree ("OrderI
 --
 
 CREATE INDEX "IX_Orders_UserId" ON public."Orders" USING btree ("UserId");
+
+
+--
+-- Name: IX_ProductImages_ProductId; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IX_ProductImages_ProductId" ON public."ProductImages" USING btree ("ProductId");
 
 
 --
@@ -649,6 +687,14 @@ ALTER TABLE ONLY public."OrderItems"
 
 ALTER TABLE ONLY public."Orders"
     ADD CONSTRAINT "FK_Orders_AspNetUsers_UserId" FOREIGN KEY ("UserId") REFERENCES public."AspNetUsers"("Id") ON DELETE CASCADE;
+
+
+--
+-- Name: ProductImages FK_ProductImages_Products_ProductId; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."ProductImages"
+    ADD CONSTRAINT "FK_ProductImages_Products_ProductId" FOREIGN KEY ("ProductId") REFERENCES public."Products"("ProductId") ON DELETE CASCADE;
 
 
 --
