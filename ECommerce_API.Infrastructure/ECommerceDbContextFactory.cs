@@ -8,9 +8,12 @@ namespace ECommerce.Infrastructure
     {
         public ECommerceDbContext CreateDbContext(string[] args)
         {
+            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true)
+                .AddJsonFile("appsettings.json", optional: false)
+                .AddJsonFile($"appsettings.{environment}.json", optional: true)
                 .Build();
 
             var optionsBuilder = new DbContextOptionsBuilder<ECommerceDbContext>();

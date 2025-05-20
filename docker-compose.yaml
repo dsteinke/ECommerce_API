@@ -11,6 +11,9 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD};Database=${POSTGRES_DB}
+    volumes:
+      - /home/admin/images:/home/admin/images
+    user: "1000:1000"
     depends_on:
       db:
         condition: service_healthy
@@ -29,7 +32,6 @@ services:
       - ./ecommerce-db.sql:/docker-entrypoint-initdb.d/ecommerce-db.sql        
     ports:
       - "5123:5432"
-    restart: always
     networks:
       - ecommerce-network
     healthcheck:

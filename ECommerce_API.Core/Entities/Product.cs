@@ -10,5 +10,6 @@
 
         //Navigation Properties
         public ICollection<CartItem> CartItems { get; set; }
+        public ICollection<ProductImage> ProductImages { get; set; }
     }
 }

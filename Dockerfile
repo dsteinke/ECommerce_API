@@ -26,6 +26,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 
-COPY ECommerce_API/ecommerce_demo.db ./ecommerce_demo.db
-
 ENTRYPOINT [ "dotnet", "ECommerce.API.dll" ]

@@ -23,12 +23,16 @@ namespace ECommerce.Infrastructure.Repositories
 
         public async Task<List<Product>> GetAllProducts()
         {
-            return await _context.Products.ToListAsync();
+            return await _context.Products
+                .Include(x => x.ProductImages)
+                .ToListAsync();
         }
 
         public async Task<Product?> GetProductById(Guid productId)
         {
-            return await _context.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
+            return await _context.Products
+                .Include(x => x.ProductImages)
+                .FirstOrDefaultAsync(x => x.ProductId == productId);
         }
 
         public async Task<List<Product>> SearchProduct(ProductRequestDTO productDTO)
@@ -81,6 +85,20 @@ namespace ECommerce.Infrastructure.Repositories
                 await _context.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
 
             _context.Products.Remove(productToDelete);
+
+            return await _context.SaveChangesAsync();
+        }
+
+        public async Task<int> AddProductImages(Product product)
+        {
+            _context.ProductImages.AddRange(product.ProductImages);
+
+            return await _context.SaveChangesAsync();
+        }
+
+        public async Task<int> RemoveProductImages(Product product)
+        {
+            _context.ProductImages.RemoveRange(product.ProductImages);
 
             return await _context.SaveChangesAsync();
         }

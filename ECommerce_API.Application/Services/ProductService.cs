@@ -2,39 +2,63 @@
 using ECommerce.Application.DTO.Product;
 using ECommerce.Application.Interfaces.Repositories;
 using ECommerce.Application.Interfaces.Services;
+using ECommerce.Domain.Entities;
 
 namespace ECommerce.Application.Services
 {
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
+        private readonly IImageService _imageService;
         private readonly IMapper _mapper;
 
-        public ProductService(IProductRepository productRepository, IMapper mapper)
+        public ProductService
+            (IProductRepository productRepository, IImageService imageService, IMapper mapper)
         {
             _productRepository = productRepository;
+            _imageService = imageService;
             _mapper = mapper;
         }
 
-        public async Task<bool> AddProduct(ProductAddDTO productAddDTO)
+        public async Task AddProduct(ProductAddDTO productAddDTO)
         {
             var product = productAddDTO.ToProduct();
 
-            await _productRepository.AddProduct(product);
+            if (productAddDTO.Images != null && productAddDTO.Images.Any())
+            {
+                product.ProductImages = new List<ProductImage>();
+                var imageUrls = await _imageService.SaveImagesToStorage(productAddDTO.Images);
 
-            return true;
+                foreach (var imageUrl in imageUrls)
+                {
+                    product.ProductImages.Add(new ProductImage
+                    {
+                        ImageUrl = imageUrl,
+                        ProductId = product.ProductId,
+                    });
+                }
+            }
+
+            await _productRepository.AddProduct(product);
         }
 
-        public async Task<bool> DeleteProduct(Guid productId)
+        public async Task DeleteProduct(Guid productId)
         {
             var productToDelete = await _productRepository.GetProductById(productId);
 
             if (productToDelete == null)
                 throw new KeyNotFoundException($"Product with Id: {productId} does not exist");
 
-            await _productRepository.DeleteProduct(productId);
+            if (productToDelete.ProductImages != null && productToDelete.ProductImages.Any())
+            {
+                var imageUrls = productToDelete.ProductImages
+                    .Select(x => x.ImageUrl)
+                    .ToList();
 
-            return true;
+                await _imageService.DeleteImagesFromStorage(imageUrls);
+            }
+
+            await _productRepository.DeleteProduct(productId);
         }
 
         public async Task<List<ProductResponseDTO>> GetAllProducts()
@@ -68,7 +92,7 @@ namespace ECommerce.Application.Services
             return _mapper.Map<List<ProductResponseDTO>>(searchedProducts);
         }
 
-        public async Task<bool> UpdateProduct(ProductUpdateDTO? productUpdateDTO)
+        public async Task UpdateProduct(ProductUpdateDTO productUpdateDTO)
         {
             var productToUpdate = await _productRepository.GetProductById(productUpdateDTO.ProductId);
 
@@ -79,8 +103,6 @@ namespace ECommerce.Application.Services
             _mapper.Map(productUpdateDTO, productToUpdate);
 
             await _productRepository.UpdateProduct(productToUpdate);
-
-            return true;
         }
     }
 }

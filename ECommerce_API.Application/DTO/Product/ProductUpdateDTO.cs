@@ -1,4 +1,5 @@
 ﻿using ECommerce.Domain.Entities;
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
 namespace ECommerce.Application
@@ -7,6 +8,7 @@ namespace ECommerce.Application
     {
         [Required]
         public Guid ProductId { get; set; }
+        public List<IFormFile>? Images { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
         public decimal Price { get; set; }

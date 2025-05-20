@@ -28,6 +28,7 @@ public static class ServiceExtensions
         services.AddScoped<IOrderRepository, OrderRepository>();
         services.AddScoped<IOrderService, OrderService>();
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IImageService, ImageService>();
         services.AddHttpContextAccessor();
     }
 
