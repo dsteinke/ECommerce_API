@@ -8,7 +8,7 @@
 - **JWT Authentication**
 - **Swagger**
 - **AutoMapper**
-- **xUnit(with Moq and FluentAssertions)**
+- **xUnit (with Moq and FluentAssertions)**
 - **Containerization with Docker**
 
 ## Architecture
